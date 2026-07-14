@@ -1,0 +1,17 @@
+{
+  "name": "Calcufaith",
+  "short_name": "Calcufaith",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#070b16",
+  "theme_color": "#0b1020",
+  "description": "Gold lot-size, profit, risk-to-reward, and stewardship checklist calculator.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
