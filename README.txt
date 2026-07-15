@@ -1,22 +1,21 @@
-CALCUFAITH V3 — AI COACH + KILL ZONES
+CALCUFAITH V4 — P&L CALENDAR + DISCIPLINE LOCK
 
 NEW FEATURES
-- Offline Calcufaith AI Coach
-- Uses calculator values, Stewardship Score, core items, pledge, RR, risk percentage, and kill-zone status
-- New York Kill Zone clock: 7:00 AM–10:00 AM Central Time
-- London Kill Zone clock: 2:00 AM–3:30 AM Central Time
-- 8:30 AM New York volume-window countdown
-- Four-tab mobile navigation
-- Existing data is preserved when possible
+- TradeZella-style monthly profit and loss calendar
+- Daily net P&L displayed directly on each calendar date
+- Tap a date to add or review trades
+- Monthly net, win rate, green days, and red days
+- Manual trade journal with instrument, result, P&L, notes, Stewardship Score, and Discipline Lock status
+- Discipline Lock saves the original trade plan
+- Records why and when the plan was changed
+- Keeps calculator, Stewardship Checklist, AI Coach, and kill-zone tools
 
-IMPORTANT
-The AI Coach is rule-based. It does not connect to ChatGPT, read live charts, or place trades.
+DATA STORAGE
+Data is saved locally in the browser on this iPhone. Clearing Safari website data or changing devices may remove it.
 
-UPDATE YOUR EXISTING GITHUB APP
-1. Download and unzip this package.
-2. Open your Calcufaith GitHub repository.
-3. Upload all five files from this folder.
-4. Replace the existing files and commit the changes.
-5. Wait about one minute for GitHub Pages to redeploy.
-6. Refresh the website.
-7. If the Home Screen app is cached, close it completely and reopen it. If needed, remove and re-add it to the Home Screen.
+UPDATE GITHUB
+1. Unzip this package.
+2. Upload all five files to the existing Calcufaith repository.
+3. Replace the old files and commit.
+4. Wait for GitHub Pages to redeploy.
+5. Refresh Calcufaith. If the Home Screen app remains cached, remove and re-add it.

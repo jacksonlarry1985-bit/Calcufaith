@@ -21,30 +21,31 @@ body{
  margin:0;min-height:100vh;color:var(--text);
  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
  background:radial-gradient(circle at 50% -12%,rgba(244,196,48,.17),transparent 30%),linear-gradient(180deg,#090e1a,#0b1020);
- padding:max(16px,env(safe-area-inset-top)) 14px max(22px,env(safe-area-inset-bottom))
+ padding:max(16px,env(safe-area-inset-top)) 12px max(22px,env(safe-area-inset-bottom))
 }
-.app{max-width:580px;margin:auto}
-.hero{text-align:center;padding:8px 6px 16px}
-.logo{width:70px;height:70px;border-radius:21px;margin:0 auto 10px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe27a,#d49b00);color:#111827;font-size:38px;font-weight:950}
-h1{font-size:33px;margin:0}.tag{color:var(--gold);font-weight:850;margin-top:4px}
-.verse{color:var(--muted);font-size:12px;line-height:1.4;margin:10px auto 0;max-width:440px}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:16px;position:sticky;top:max(7px,env(safe-area-inset-top));z-index:10;backdrop-filter:blur(18px);margin-bottom:13px}
-.tab{border:0;border-radius:11px;padding:10px 5px;font-size:12px;font-weight:850;color:var(--muted);background:transparent}
+.app{max-width:620px;margin:auto}
+.hero{text-align:center;padding:8px 6px 14px}
+.logo{width:66px;height:66px;border-radius:20px;margin:0 auto 9px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe27a,#d49b00);color:#111827;font-size:36px;font-weight:950}
+h1{font-size:32px;margin:0}.tag{color:var(--gold);font-weight:850;margin-top:4px}
+.verse{color:var(--muted);font-size:12px;line-height:1.4;margin:9px auto 0;max-width:460px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:16px;position:sticky;top:max(7px,env(safe-area-inset-top));z-index:10;backdrop-filter:blur(18px);margin-bottom:12px}
+.tab{border:0;border-radius:11px;padding:10px 4px;font-size:12px;font-weight:850;color:var(--muted);background:transparent}
 .tab.active{background:var(--gold);color:#141414}
 .panel{display:none}.panel.active{display:block}
-.card{background:rgba(17,24,39,.97);border:1px solid var(--line);border-radius:21px;padding:18px;margin-bottom:13px;box-shadow:0 16px 46px rgba(0,0,0,.25)}
-.title{margin:0 0 3px;font-size:20px}.sub{color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:10px}
-label{display:block;font-weight:800;margin:14px 0 7px}
+.card{background:rgba(17,24,39,.97);border:1px solid var(--line);border-radius:21px;padding:17px;margin-bottom:12px;box-shadow:0 16px 46px rgba(0,0,0,.25)}
+.title{margin:0 0 3px;font-size:20px}.sub{color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:9px}
+label{display:block;font-weight:800;margin:13px 0 7px}
 .hint{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:3px}
 input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.12);background:var(--card2);color:var(--text);font-size:17px;padding:13px;border-radius:14px;outline:none}
-textarea{min-height:110px;resize:vertical}
+textarea{min-height:96px;resize:vertical}
 input:focus,select:focus,textarea:focus{border-color:var(--gold)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .riskbuttons{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}
 .riskbuttons button{border:0;border-radius:11px;padding:10px 2px;font-weight:900;background:var(--card2);color:var(--text)}
 .riskbuttons button.active{background:var(--gold);color:#151515}
-.summary{margin-top:17px;background:#080d18;border:1px solid rgba(244,196,48,.35);border-radius:18px;padding:16px}
-.metric{text-align:center;padding:3px 0 11px}.metric .v{font-size:48px;color:var(--gold);font-weight:950;line-height:1}.metric .l{color:var(--muted);font-size:12px;margin-top:5px}
+.summary{margin-top:16px;background:#080d18;border:1px solid rgba(244,196,48,.35);border-radius:18px;padding:15px}
+.metric{text-align:center;padding:3px 0 10px}.metric .v{font-size:46px;color:var(--gold);font-weight:950;line-height:1}.metric .l{color:var(--muted);font-size:12px;margin-top:5px}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .stat{background:var(--card2);padding:11px 6px;border-radius:12px;text-align:center}.stat strong{display:block;font-size:18px}.stat span{color:var(--muted);font-size:10px}
 .good{color:var(--green)!important}.bad{color:var(--red)!important}
@@ -56,25 +57,44 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 .check input{width:22px;height:22px;min-width:22px;margin:0;accent-color:var(--green)}
 .check strong{display:block;font-size:14px}.check span{display:block;color:var(--muted);font-size:11px;line-height:1.35;margin-top:2px}
 .scorebox{text-align:center}
-.ring{--score:0;width:145px;height:145px;border-radius:50%;margin:12px auto;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--score)*1%),rgba(255,255,255,.08) 0);position:relative}
+.ring{--score:0;width:140px;height:140px;border-radius:50%;margin:12px auto;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--score)*1%),rgba(255,255,255,.08) 0);position:relative}
 .ring:before{content:"";position:absolute;inset:12px;background:var(--card);border-radius:50%}
-.ringin{position:relative;z-index:2}.scoren{font-size:37px;font-weight:950}.scorel{color:var(--muted);font-size:11px}
+.ringin{position:relative;z-index:2}.scoren{font-size:36px;font-weight:950}.scorel{color:var(--muted);font-size:11px}
 .pledge{display:flex;gap:10px;align-items:flex-start;background:rgba(244,196,48,.08);border:1px solid rgba(244,196,48,.22);padding:12px;border-radius:13px;margin:14px 0}
 .pledge input{width:22px;height:22px;min-width:22px;margin:0;accent-color:var(--gold)}
 .pledge span{font-size:12px;line-height:1.4;color:#fef3c7}
-.exec,.analyze{width:100%;border:0;border-radius:14px;padding:15px;font-size:15px;font-weight:950}
-.exec{background:#263143;color:#77849a}.exec.ready,.analyze{background:linear-gradient(135deg,#f4c430,#ffd966);color:#111827}
-.airesult{margin-top:14px;padding:15px;border-radius:15px;background:#080d18;border:1px solid var(--line)}
+.btn{width:100%;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:950}
+.gold{background:linear-gradient(135deg,#f4c430,#ffd966);color:#111827}
+.dark{background:#263143;color:#d8dee9}
+.danger{background:rgba(251,113,133,.14);color:#fecdd3;border:1px solid rgba(251,113,133,.3)}
+.locked{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);padding:13px;border-radius:14px;margin-top:12px}
+.locked strong{color:var(--green)}
+.airesult{margin-top:13px;padding:14px;border-radius:15px;background:#080d18;border:1px solid var(--line)}
 .aihead{display:flex;justify-content:space-between;gap:10px;align-items:center}.badge{padding:7px 10px;border-radius:999px;font-size:11px;font-weight:900;background:var(--card2)}
-.aibody{margin-top:12px;line-height:1.55;font-size:14px}.aibody ul{padding-left:18px}.aibody li{margin:5px 0}
-.clock{font-size:42px;font-weight:950;text-align:center;color:var(--gold);letter-spacing:-1px}
+.aibody{margin-top:11px;line-height:1.5;font-size:14px}.aibody ul{padding-left:18px}.aibody li{margin:5px 0}
+.clock{font-size:40px;font-weight:950;text-align:center;color:var(--gold);letter-spacing:-1px}
 .date{text-align:center;color:var(--muted);font-size:12px;margin-top:4px}
 .session{background:var(--card2);border-radius:14px;padding:13px;margin-top:10px}
 .sessiontop{display:flex;justify-content:space-between;gap:12px;align-items:center}.session strong{font-size:15px}.session small{color:var(--muted)}
 .progress{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:var(--gold)}
-.countdown{margin-top:8px;font-size:12px;color:var(--muted)}
-.live{color:var(--green);font-weight:900}.closed{color:var(--muted);font-weight:900}
+.countdown{margin-top:8px;font-size:12px;color:var(--muted)}.live{color:var(--green);font-weight:900}.closed{color:var(--muted);font-weight:900}
+.calhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.calhead button{border:0;background:var(--card2);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px}
+.monthtitle{font-weight:950;font-size:18px;text-align:center}
+.monthstats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}
+.monthstats .stat strong{font-size:16px}
+.weekdays,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.weekdays div{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:4px}
+.day{min-height:70px;background:var(--card2);border:1px solid transparent;border-radius:11px;padding:7px;position:relative}
+.day.other{opacity:.35}.day.today{border-color:var(--gold)}.day.selected{outline:2px solid var(--gold)}
+.daynum{font-size:11px;font-weight:900}.daypnl{font-size:11px;font-weight:900;margin-top:14px;word-break:break-word}
+.daycount{position:absolute;bottom:5px;right:6px;color:var(--muted);font-size:9px}
+.trade-list{display:flex;flex-direction:column;gap:8px;margin-top:11px}
+.trade-row{display:grid;grid-template-columns:1fr auto;gap:10px;background:var(--card2);border-radius:12px;padding:11px}
+.trade-row small{color:var(--muted);display:block;margin-top:3px}
+.trade-actions{display:flex;gap:6px;align-items:center}.mini{border:0;border-radius:9px;padding:8px;background:#263143;color:#fff}
 .footer{text-align:center;color:var(--muted);font-size:10px;line-height:1.45;padding:4px 10px 14px}
+@media(max-width:430px){.tabs{grid-template-columns:repeat(3,1fr)}.monthstats{grid-template-columns:repeat(2,1fr)}.day{min-height:64px;padding:6px}.daypnl{font-size:10px}}
 </style>
 </head>
 <body>
@@ -86,28 +106,28 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 </header>
 
 <nav class="tabs">
-<button class="tab active" data-tab="calc">Trade</button>
+<button class="tab active" data-tab="trade">Trade</button>
 <button class="tab" data-tab="steward">Stewardship</button>
-<button class="tab" data-tab="ai">AI Coach</button>
+<button class="tab" data-tab="coach">AI Coach</button>
+<button class="tab" data-tab="calendarPanel">Calendar</button>
 <button class="tab" data-tab="sessions">Kill Zones</button>
+<button class="tab" data-tab="lock">Discipline Lock</button>
 </nav>
 
-<section id="calc" class="panel active">
+<section id="trade" class="panel active">
 <div class="card">
 <h2 class="title">Trade Calculator</h2>
-<div class="sub">Enter the trade prices. Calcufaith calculates lot size, risk, profit, and reward automatically.</div>
-
+<div class="sub">Enter your plan and Calcufaith calculates position size, risk, projected profit, and reward.</div>
 <label>Account Balance ($)</label><input id="balance" type="number" inputmode="decimal" value="427">
 <label>Risk Percentage</label><input id="risk" type="number" inputmode="decimal" value="3" step="0.1">
 <div class="riskbuttons"><button data-risk="1">1%</button><button data-risk="2">2%</button><button data-risk="3" class="active">3%</button><button data-risk="5">5%</button></div>
+<label>Instrument</label><input id="instrument" value="XAUUSD">
 <label>Direction</label><select id="direction"><option value="buy">Buy</option><option value="sell">Sell</option></select>
-
 <div class="grid2">
 <div><label>Entry Price</label><input id="entry" type="number" inputmode="decimal" step="0.01" value="4050"></div>
 <div><label>Stop-Loss Price</label><input id="sl" type="number" inputmode="decimal" step="0.01" value="4048"></div>
 </div>
 <label>Take-Profit Price</label><input id="tp" type="number" inputmode="decimal" step="0.01" value="4055">
-
 <div class="summary">
 <div class="metric"><div class="v" id="lot">0.06</div><div class="l">Recommended Lot Size</div></div>
 <div class="stats">
@@ -120,27 +140,19 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 </div>
 </div>
 <div id="warn" class="notice"></div>
-
-<details>
-<summary>Broker Settings</summary>
+<details><summary>Broker Settings</summary>
 <label>Broker Name</label><input id="broker" value="Coinexx">
-<div class="grid2">
-<div><label>Minimum Lot</label><input id="minlot" type="number" value="0.01" step="0.001"></div>
-<div><label>Lot Increment</label><input id="increment" type="number" value="0.01" step="0.001"></div>
-</div>
+<div class="grid2"><div><label>Minimum Lot</label><input id="minlot" type="number" value="0.01" step="0.001"></div><div><label>Lot Increment</label><input id="increment" type="number" value="0.01" step="0.001"></div></div>
 <label>Value per $1 Gold Move at 1.00 Lot</label><input id="contract" type="number" value="100">
-<span class="hint">Saved automatically. Confirm your broker’s XAUUSD contract specification.</span>
 </details>
 </div>
 </section>
 
 <section id="steward" class="panel">
 <div class="card scorebox">
-<h2 class="title">Stewardship Checklist</h2>
-<div class="sub">80% qualifies the setup, but all core risk items must also be complete.</div>
+<h2 class="title">Stewardship Checklist</h2><div class="sub">80% qualifies the setup. Core risk items must also be completed.</div>
 <div class="ring" id="ring"><div class="ringin"><div class="scoren" id="score">0%</div><div class="scorel">Stewardship Score</div></div></div>
 <div id="status" style="font-weight:900">Preserve Your Capital</div>
-
 <div class="checklist">
 <label class="check"><input type="checkbox" data-core="1"><span><strong>Higher-Time-Frame Bias Confirmed</strong><span>4H or 1H agrees with the setup.</span></span></label>
 <label class="check"><input type="checkbox"><span><strong>Key Support or Resistance Confirmed</strong><span>The setup is forming at a meaningful level.</span></span></label>
@@ -154,53 +166,76 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 <label class="check"><input type="checkbox"><span><strong>No Conflicting High-Impact News</strong><span>Upcoming news has been considered.</span></span></label>
 <label class="check"><input type="checkbox" data-core="1"><span><strong>I Am Trading My Plan, Not My Emotions</strong><span>No revenge trading, FOMO, or overtrading.</span></span></label>
 </div>
-
 <label class="pledge"><input id="pledge" type="checkbox"><span>I have followed my trading plan, accepted my risk, and will honor my stop loss without emotion.</span></label>
-<button id="execute" class="exec" disabled>COMPLETE 80% TO QUALIFY</button>
+<button id="execute" class="btn dark" disabled>COMPLETE 80% TO QUALIFY</button>
 </div>
 </section>
 
-<section id="ai" class="panel">
+<section id="coach" class="panel">
 <div class="card">
-<h2 class="title">Calcufaith AI Coach</h2>
-<div class="sub">This offline coach evaluates your trade using your calculator, checklist, risk rules, reward ratio, and current kill-zone status.</div>
-
-<label>Trade Notes</label>
-<textarea id="notes" placeholder="Example: Gold swept London low, 5-minute CHOCH confirmed, waiting for retest and engulfing candle."></textarea>
-<button id="analyze" class="analyze">ANALYZE MY TRADE</button>
-
-<div class="airesult" id="airesult">
-<div class="aihead"><strong>Calcufaith AI</strong><span class="badge" id="aibadge">Ready</span></div>
-<div class="aibody" id="aibody">Complete your trade information and Stewardship Checklist, then tap <strong>Analyze My Trade</strong>.</div>
+<h2 class="title">Calcufaith AI Coach</h2><div class="sub">Offline rule-based analysis using your trade plan, Stewardship Score, risk, reward, and kill-zone status.</div>
+<label>Trade Notes</label><textarea id="notes" placeholder="Example: Gold swept London low, CHOCH confirmed, waiting for retest and engulfing candle."></textarea>
+<button id="analyze" class="btn gold">ANALYZE MY TRADE</button>
+<div class="airesult"><div class="aihead"><strong>Calcufaith AI</strong><span class="badge" id="aibadge">Ready</span></div><div class="aibody" id="aibody">Complete your information, then tap Analyze My Trade.</div></div>
 </div>
+</section>
+
+<section id="calendarPanel" class="panel">
+<div class="card">
+<div class="calhead"><button id="prevMonth">‹</button><div class="monthtitle" id="monthTitle"></div><button id="nextMonth">›</button></div>
+<div class="monthstats">
+<div class="stat"><strong id="monthNet">$0.00</strong><span>Monthly Net</span></div>
+<div class="stat"><strong id="monthWinRate">0%</strong><span>Win Rate</span></div>
+<div class="stat"><strong id="greenDays">0</strong><span>Green Days</span></div>
+<div class="stat"><strong id="redDays">0</strong><span>Red Days</span></div>
+</div>
+<div class="weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+<div class="calendar" id="calendar"></div>
+</div>
+
+<div class="card">
+<h2 class="title">Daily P&L Entry</h2>
+<div class="sub">Tap a date above, then record one or more trades for that day.</div>
+<label>Date</label><input id="tradeDate" type="date">
+<div class="grid2"><div><label>Instrument</label><input id="journalInstrument" value="XAUUSD"></div><div><label>Result</label><select id="resultType"><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div></div>
+<div class="grid2"><div><label>Profit / Loss ($)</label><input id="pnl" type="number" inputmode="decimal" step="0.01" placeholder="Example: 125 or -60"></div><div><label>Stewardship Score</label><input id="journalScore" type="number" min="0" max="100" value="80"></div></div>
+<label>Notes</label><textarea id="journalNotes" placeholder="What happened? Did you honor the plan?"></textarea>
+<label style="display:flex;gap:10px;align-items:center"><input id="honoredLock" type="checkbox" style="width:22px;height:22px"> Honored Discipline Lock</label>
+<button id="saveTrade" class="btn gold">SAVE TRADE</button>
+<div class="trade-list" id="tradeList"></div>
 </div>
 </section>
 
 <section id="sessions" class="panel">
 <div class="card">
-<h2 class="title">Kill Zone Clock</h2>
-<div class="sub">Times display in Central Time for your trading routine.</div>
-<div class="clock" id="clock">--:--:--</div>
-<div class="date" id="date"></div>
-
-<div class="session">
-<div class="sessiontop"><div><strong>New York Kill Zone</strong><br><small>7:00 AM–10:00 AM CT</small></div><span id="nystatus" class="closed">Closed</span></div>
-<div class="progress"><div class="bar" id="nybar"></div></div><div class="countdown" id="nycount"></div>
-</div>
-
-<div class="session">
-<div class="sessiontop"><div><strong>London Kill Zone</strong><br><small>2:00 AM–3:30 AM CT</small></div><span id="ldnstatus" class="closed">Closed</span></div>
-<div class="progress"><div class="bar" id="ldnbar"></div></div><div class="countdown" id="ldncount"></div>
-</div>
-
-<div class="session">
-<div class="sessiontop"><div><strong>New York Volume Window</strong><br><small>8:30 AM CT</small></div><span id="volstatus" class="closed">Upcoming</span></div>
-<div class="countdown" id="volcount"></div>
-</div>
+<h2 class="title">Kill Zone Clock</h2><div class="sub">Central Time.</div>
+<div class="clock" id="clock">--:--:--</div><div class="date" id="date"></div>
+<div class="session"><div class="sessiontop"><div><strong>New York Kill Zone</strong><br><small>7:00 AM–10:00 AM CT</small></div><span id="nystatus" class="closed">Closed</span></div><div class="progress"><div class="bar" id="nybar"></div></div><div class="countdown" id="nycount"></div></div>
+<div class="session"><div class="sessiontop"><div><strong>London Kill Zone</strong><br><small>2:00 AM–3:30 AM CT</small></div><span id="ldnstatus" class="closed">Closed</span></div><div class="progress"><div class="bar" id="ldnbar"></div></div><div class="countdown" id="ldncount"></div></div>
+<div class="session"><div class="sessiontop"><div><strong>New York Volume Window</strong><br><small>8:30 AM CT</small></div><span id="volstatus" class="closed">Upcoming</span></div><div class="countdown" id="volcount"></div></div>
 </div>
 </section>
 
-<div class="footer">Calcufaith AI is a rule-based planning assistant, not autonomous financial advice. It does not read live charts or place trades.</div>
+<section id="lock" class="panel">
+<div class="card">
+<h2 class="title">Discipline Lock</h2>
+<div class="sub">Save the original plan before entering. The app records changes so you can identify emotional patterns later.</div>
+<div id="lockSummary" class="airesult">No active locked trade.</div>
+<button id="lockTrade" class="btn gold">LOCK CURRENT TRADE PLAN</button>
+<div id="lockControls" style="display:none;margin-top:12px">
+<label>Why are you changing the plan?</label>
+<select id="changeReason">
+<option>Market structure changed</option><option>Moving stop because I am scared</option><option>Entering early</option><option>Chasing price</option><option>Revenge trading</option><option>Other</option>
+</select>
+<label>Change Notes</label><textarea id="changeNotes"></textarea>
+<button id="recordChange" class="btn danger">RECORD PLAN CHANGE</button>
+<button id="completeLock" class="btn dark" style="margin-top:8px">COMPLETE / CLOSE LOCKED TRADE</button>
+</div>
+<div class="trade-list" id="changeHistory"></div>
+</div>
+</section>
+
+<div class="footer">Calcufaith stores information locally on this device. It does not place trades or connect to your broker.</div>
 </main>
 
 <script>
@@ -211,18 +246,20 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
  t.classList.add('active');$(t.dataset.tab).classList.add('active')
 });
 
-const f={balance:$('balance'),risk:$('risk'),direction:$('direction'),entry:$('entry'),sl:$('sl'),tp:$('tp'),broker:$('broker'),minlot:$('minlot'),increment:$('increment'),contract:$('contract'),notes:$('notes')};
+const f={balance:$('balance'),risk:$('risk'),instrument:$('instrument'),direction:$('direction'),entry:$('entry'),sl:$('sl'),tp:$('tp'),broker:$('broker'),minlot:$('minlot'),increment:$('increment'),contract:$('contract'),notes:$('notes')};
 const checks=[...document.querySelectorAll('.check input')],pledge=$('pledge');
 let calcState={rr:0,profit:0,lot:0,valid:false,riskPct:0};
+let journal=JSON.parse(localStorage.getItem('calcufaithJournal')||'[]');
+let lockedTrade=JSON.parse(localStorage.getItem('calcufaithLockedTrade')||'null');
+let changeLog=JSON.parse(localStorage.getItem('calcufaithChangeLog')||'[]');
+let viewMonth=new Date();viewMonth.setDate(1);
 
 const money=v=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number.isFinite(v)?v:0);
 const dec=s=>String(s).includes('.')?String(s).split('.')[1].length:0;
 const floorStep=(v,s)=>Math.floor((v+1e-10)/s)*s;
+const localDate=d=>{const x=new Date(d);x.setMinutes(x.getMinutes()-x.getTimezoneOffset());return x.toISOString().slice(0,10)};
 
-function scoreData(){
- const n=checks.filter(x=>x.checked).length;
- return {score:Math.round(n/checks.length*100),core:checks.filter(x=>x.dataset.core).every(x=>x.checked)}
-}
+function scoreData(){const n=checks.filter(x=>x.checked).length;return{score:Math.round(n/checks.length*100),core:checks.filter(x=>x.dataset.core).every(x=>x.checked)}}
 function calc(){
  const b=+f.balance.value||0,r=+f.risk.value||0,e=+f.entry.value||0,s=+f.sl.value||0,t=+f.tp.value||0,c=+f.contract.value||100,inc=+f.increment.value||.01,min=+f.minlot.value||.01,buy=f.direction.value==='buy';
  const sd=buy?e-s:s-e,td=buy?t-e:e-t,max=b*r/100,raw=sd>0?max/(sd*c):0;
@@ -233,81 +270,69 @@ function calc(){
  if(r>5){w.className='notice show';w.textContent='Caution: risk above 5% may cause significant drawdowns.'}
  else if(sd<=0){w.className='notice show';w.textContent=buy?'For a Buy, stop-loss must be below entry.':'For a Sell, stop-loss must be above entry.'}
  else if(td<=0){w.className='notice show';w.textContent=buy?'For a Buy, TP must be above entry.':'For a Sell, TP must be below entry.'}
- calcState={rr,profit:p,lot,valid:sd>0&&td>0&&lot>0,riskPct:r};
- document.querySelectorAll('[data-risk]').forEach(x=>x.classList.toggle('active',+x.dataset.risk===r));
- save()
+ calcState={rr,profit:p,lot,valid:sd>0&&td>0&&lot>0,riskPct:r,actualRisk:ar};
+ document.querySelectorAll('[data-risk]').forEach(x=>x.classList.toggle('active',+x.dataset.risk===r));saveMain()
 }
 document.querySelectorAll('[data-risk]').forEach(x=>x.onclick=()=>{f.risk.value=x.dataset.risk;calc()});
 Object.values(f).forEach(x=>x.addEventListener('input',calc));
 
 function updateScore(){
- const {score,core}=scoreData();
- checks.forEach(x=>x.closest('.check').classList.toggle('on',x.checked));
- $('ring').style.setProperty('--score',score);$('score').textContent=score+'%';
- let text='Preserve Your Capital',color='var(--red)';
- if(score>=90){text='Elite Setup';color='var(--green)'}else if(score>=80){text='Qualified Setup';color='var(--gold)'}else if(score>=60){text='Wait for More Confirmation';color='var(--orange)'}
+ const {score,core}=scoreData();checks.forEach(x=>x.closest('.check').classList.toggle('on',x.checked));$('ring').style.setProperty('--score',score);$('score').textContent=score+'%';
+ let text='Preserve Your Capital',color='var(--red)';if(score>=90){text='Elite Setup';color='var(--green)'}else if(score>=80){text='Qualified Setup';color='var(--gold)'}else if(score>=60){text='Wait for More Confirmation';color='var(--orange)'}
  $('status').textContent=text;$('status').style.color=color;
- const q=score>=80&&core&&pledge.checked,btn=$('execute');btn.disabled=!q;btn.classList.toggle('ready',q);
- btn.textContent=q?'ENTER WITH DISCIPLINE':score>=80&&!core?'COMPLETE CORE RISK ITEMS':score>=80&&!pledge.checked?'ACCEPT THE STEWARDSHIP PLEDGE':'COMPLETE 80% TO QUALIFY';
- save()
+ const q=score>=80&&core&&pledge.checked,btn=$('execute');btn.disabled=!q;btn.className='btn '+(q?'gold':'dark');btn.textContent=q?'ENTER WITH DISCIPLINE':score>=80&&!core?'COMPLETE CORE RISK ITEMS':score>=80&&!pledge.checked?'ACCEPT THE STEWARDSHIP PLEDGE':'COMPLETE 80% TO QUALIFY';saveMain()
 }
 checks.forEach(x=>x.onchange=updateScore);pledge.onchange=updateScore;
 
-function ctParts(){
- const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,weekday:'long',month:'long',day:'numeric',year:'numeric'}).formatToParts(new Date());
- const o={};parts.forEach(p=>o[p.type]=p.value);return o
-}
-function minutesCT(){const p=ctParts();return (+p.hour%24)*60+(+p.minute)}
+function ctParts(){const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,weekday:'long',month:'long',day:'numeric',year:'numeric'}).formatToParts(new Date());const o={};parts.forEach(p=>o[p.type]=p.value);return o}
+function minutesCT(){const p=ctParts();return(+p.hour%24)*60+(+p.minute)}
 function fmtMin(m){m=Math.max(0,Math.round(m));const h=Math.floor(m/60),n=m%60;return h?`${h}h ${n}m`:`${n}m`}
-function sessionUpdate(start,end,statusId,barId,countId){
- const now=minutesCT(),status=$(statusId),bar=$(barId),count=$(countId);
- if(now>=start&&now<end){status.textContent='LIVE';status.className='live';bar.style.width=((now-start)/(end-start)*100)+'%';count.textContent=`Closes in ${fmtMin(end-now)}`}
- else{status.textContent='Closed';status.className='closed';bar.style.width='0%';let until=now<start?start-now:1440-now+start;count.textContent=`Opens in ${fmtMin(until)}`}
-}
-function clockUpdate(){
- const p=ctParts();$('clock').textContent=`${p.hour}:${p.minute}:${p.second}`;$('date').textContent=`${p.weekday}, ${p.month} ${p.day}, ${p.year} — Central Time`;
- sessionUpdate(420,600,'nystatus','nybar','nycount');sessionUpdate(120,210,'ldnstatus','ldnbar','ldncount');
- const now=minutesCT(),target=510;let d=now<=target?target-now:1440-now+target;
- $('volstatus').textContent=Math.abs(now-target)<1?'LIVE':'Upcoming';$('volstatus').className=Math.abs(now-target)<1?'live':'closed';$('volcount').textContent=d===0?'8:30 AM volume window is active.':`Next 8:30 AM window in ${fmtMin(d)}`
-}
+function sessionUpdate(start,end,statusId,barId,countId){const now=minutesCT(),status=$(statusId),bar=$(barId),count=$(countId);if(now>=start&&now<end){status.textContent='LIVE';status.className='live';bar.style.width=((now-start)/(end-start)*100)+'%';count.textContent=`Closes in ${fmtMin(end-now)}`}else{status.textContent='Closed';status.className='closed';bar.style.width='0%';let until=now<start?start-now:1440-now+start;count.textContent=`Opens in ${fmtMin(until)}`}}
+function clockUpdate(){const p=ctParts();$('clock').textContent=`${p.hour}:${p.minute}:${p.second}`;$('date').textContent=`${p.weekday}, ${p.month} ${p.day}, ${p.year} — Central Time`;sessionUpdate(420,600,'nystatus','nybar','nycount');sessionUpdate(120,210,'ldnstatus','ldnbar','ldncount');const now=minutesCT(),target=510;let d=now<=target?target-now:1440-now+target;$('volstatus').textContent=Math.abs(now-target)<1?'LIVE':'Upcoming';$('volstatus').className=Math.abs(now-target)<1?'live':'closed';$('volcount').textContent=d===0?'8:30 AM volume window is active.':`Next 8:30 AM window in ${fmtMin(d)}`}
 setInterval(clockUpdate,1000);clockUpdate();
 
-function analyze(){
- const {score,core}=scoreData(),ny=$('nystatus').textContent==='LIVE',ldn=$('ldnstatus').textContent==='LIVE';
- let verdict='WAIT',color='var(--orange)',reasons=[],actions=[];
- if(!calcState.valid)reasons.push('Trade prices or calculated lot size are not valid.');
- if(calcState.riskPct>5)reasons.push(`Risk is ${calcState.riskPct.toFixed(1)}%, above the 5% caution level.`);
- if(calcState.rr>0&&calcState.rr<2)reasons.push(`Risk-to-reward is only 1:${calcState.rr.toFixed(2)}.`);
- if(score<80)reasons.push(`Stewardship Score is ${score}%, below the required 80%.`);
- if(!core)reasons.push('One or more core risk confirmations are incomplete.');
- if(!pledge.checked)reasons.push('The Stewardship Pledge has not been accepted.');
- if(ny)reasons.push('New York Kill Zone is currently live.');
- else if(ldn)reasons.push('London Kill Zone is currently live.');
- else reasons.push('Neither defined kill zone is currently live.');
+$('analyze').onclick=()=>{
+ const {score,core}=scoreData(),ny=$('nystatus').textContent==='LIVE',ldn=$('ldnstatus').textContent==='LIVE';let verdict='WAIT',color='var(--orange)',reasons=[],actions=[];
+ if(!calcState.valid)reasons.push('Trade prices or calculated lot size are not valid.');if(calcState.riskPct>5)reasons.push(`Risk is ${calcState.riskPct.toFixed(1)}%, above the 5% caution level.`);if(calcState.rr>0&&calcState.rr<2)reasons.push(`Risk-to-reward is only 1:${calcState.rr.toFixed(2)}.`);if(score<80)reasons.push(`Stewardship Score is ${score}%, below 80%.`);if(!core)reasons.push('Core risk confirmations are incomplete.');if(!pledge.checked)reasons.push('Stewardship Pledge has not been accepted.');reasons.push(ny?'New York Kill Zone is live.':ldn?'London Kill Zone is live.':'Neither defined kill zone is live.');
+ const qualified=calcState.valid&&score>=80&&core&&pledge.checked&&calcState.rr>=2&&calcState.riskPct<=5;if(qualified){verdict=score>=90?'ELITE SETUP':'TRADE QUALIFIED';color='var(--green)';actions.push('The setup meets the current Calcufaith rules. Honor the stop and planned entry.')}else{actions.push('Wait for the missing confirmation rather than forcing the trade.')}
+ $('aibadge').textContent=verdict;$('aibadge').style.color=color;$('aibody').innerHTML=`<strong style="color:${color}">${verdict}</strong><ul>${reasons.map(x=>`<li>${x}</li>`).join('')}</ul><strong>Coach Response</strong><ul>${actions.map(x=>`<li>${x}</li>`).join('')}</ul>${f.notes.value.trim()?`<strong>Your Notes</strong><p>${f.notes.value.replace(/[<>]/g,'')}</p>`:''}`
+};
 
- const qualified=calcState.valid&&score>=80&&core&&pledge.checked&&calcState.rr>=2&&calcState.riskPct<=5;
- if(qualified){verdict=score>=90?'ELITE SETUP':'TRADE QUALIFIED';color='var(--green)';actions.push('The setup meets the current Calcufaith rules. Enter only at your planned confirmation and honor the stop loss.')}
- else{
-   if(score<80)actions.push('Complete more checklist confirmations before entry.');
-   if(calcState.rr<2)actions.push('Improve the target or tighten the valid stop to reach at least 1:2.');
-   if(!core)actions.push('Complete every core stewardship item.');
-   actions.push('Wait for the market to confirm your process rather than forcing the trade.');
- }
- $('aibadge').textContent=verdict;$('aibadge').style.color=color;
- $('aibody').innerHTML=`<strong style="color:${color}">${verdict}</strong>
- <ul>${reasons.map(x=>`<li>${x}</li>`).join('')}</ul>
- <strong>Coach Response</strong><ul>${actions.map(x=>`<li>${x}</li>`).join('')}</ul>
- ${f.notes.value.trim()?`<strong>Your Notes</strong><p>${f.notes.value.replace(/[<>]/g,'')}</p>`:''}`;
+function renderCalendar(){
+ const year=viewMonth.getFullYear(),month=viewMonth.getMonth();$('monthTitle').textContent=viewMonth.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+ const first=new Date(year,month,1),start=new Date(year,month,1-first.getDay());const cal=$('calendar');cal.innerHTML='';
+ const monthTrades=journal.filter(t=>{const d=new Date(t.date+'T12:00:00');return d.getFullYear()===year&&d.getMonth()===month});
+ const net=monthTrades.reduce((a,t)=>a+(+t.pnl||0),0),wins=monthTrades.filter(t=>(+t.pnl||0)>0).length,losses=monthTrades.filter(t=>(+t.pnl||0)<0).length;
+ const daily={};monthTrades.forEach(t=>{daily[t.date]=(daily[t.date]||0)+(+t.pnl||0)});
+ $('monthNet').textContent=money(net);$('monthNet').className=net>=0?'good':'bad';$('monthWinRate').textContent=(wins+losses)?Math.round(wins/(wins+losses)*100)+'%':'0%';$('greenDays').textContent=Object.values(daily).filter(v=>v>0).length;$('redDays').textContent=Object.values(daily).filter(v=>v<0).length;
+ for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=localDate(d),items=journal.filter(t=>t.date===key),pnl=items.reduce((a,t)=>a+(+t.pnl||0),0);const cell=document.createElement('div');cell.className='day'+(d.getMonth()!==month?' other':'')+(key===localDate(new Date())?' today':'')+(key===$('tradeDate').value?' selected':'');cell.innerHTML=`<div class="daynum">${d.getDate()}</div>${items.length?`<div class="daypnl ${pnl>=0?'good':'bad'}">${pnl>=0?'+':''}${money(pnl)}</div><div class="daycount">${items.length} trade${items.length>1?'s':''}</div>`:''}`;cell.onclick=()=>{$('tradeDate').value=key;renderCalendar();renderTrades()};cal.appendChild(cell)}
 }
-$('analyze').onclick=analyze;
+$('prevMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()-1);renderCalendar()};$('nextMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()+1);renderCalendar()};
 
-function save(){
- const d={};Object.entries(f).forEach(([k,v])=>d[k]=v.value);d.checks=checks.map(x=>x.checked);d.pledge=pledge.checked;localStorage.setItem('calcufaithV3',JSON.stringify(d))
+function renderTrades(){
+ const date=$('tradeDate').value,list=$('tradeList');list.innerHTML='';journal.filter(t=>t.date===date).forEach(t=>{const row=document.createElement('div');row.className='trade-row';row.innerHTML=`<div><strong>${t.instrument} — ${t.result}</strong><small>${money(+t.pnl||0)} • Stewardship ${t.score}% • ${t.honored?'Lock honored':'Lock not honored'}</small><small>${t.notes||''}</small></div><div class="trade-actions"><button class="mini" data-id="${t.id}">Delete</button></div>`;list.appendChild(row)});list.querySelectorAll('button').forEach(b=>b.onclick=()=>{journal=journal.filter(t=>String(t.id)!==b.dataset.id);localStorage.setItem('calcufaithJournal',JSON.stringify(journal));renderCalendar();renderTrades()})
 }
-function load(){
- try{const d=JSON.parse(localStorage.getItem('calcufaithV3'))||JSON.parse(localStorage.getItem('calcufaithV2'))||JSON.parse(localStorage.getItem('calcufaithData'));if(!d)return;Object.entries(f).forEach(([k,v])=>{if(d[k]!==undefined)v.value=d[k]});if(Array.isArray(d.checks))checks.forEach((x,i)=>x.checked=!!d.checks[i]);pledge.checked=!!d.pledge}catch(e){}
+$('saveTrade').onclick=()=>{
+ const date=$('tradeDate').value,pnl=+$('pnl').value;if(!date||!Number.isFinite(pnl)){alert('Enter a date and profit/loss amount.');return}
+ journal.push({id:Date.now(),date,instrument:$('journalInstrument').value||'XAUUSD',result:$('resultType').value,pnl,score:+$('journalScore').value||0,notes:$('journalNotes').value,honored:$('honoredLock').checked});
+ localStorage.setItem('calcufaithJournal',JSON.stringify(journal));$('pnl').value='';$('journalNotes').value='';renderCalendar();renderTrades()
+};
+
+function renderLock(){
+ const s=$('lockSummary'),controls=$('lockControls');if(!lockedTrade){s.innerHTML='No active locked trade.';controls.style.display='none';return}
+ s.innerHTML=`<div class="locked"><strong>Trade Plan Locked</strong><br>${lockedTrade.instrument} ${lockedTrade.direction.toUpperCase()}<br>Entry ${lockedTrade.entry} • SL ${lockedTrade.sl} • TP ${lockedTrade.tp}<br>Lot ${lockedTrade.lot} • Risk ${money(lockedTrade.risk)} • Score ${lockedTrade.score}%<br><small>Locked ${new Date(lockedTrade.lockedAt).toLocaleString()}</small></div>`;controls.style.display='block'
 }
-load();calc();updateScore();
+$('lockTrade').onclick=()=>{
+ const {score,core}=scoreData();if(!calcState.valid){alert('Complete a valid trade plan first.');return}if(score<80||!core||!pledge.checked){alert('Complete the Stewardship requirements before locking the trade.');return}
+ lockedTrade={instrument:f.instrument.value,direction:f.direction.value,entry:+f.entry.value,sl:+f.sl.value,tp:+f.tp.value,lot:calcState.lot,risk:calcState.actualRisk,score,lockedAt:new Date().toISOString()};localStorage.setItem('calcufaithLockedTrade',JSON.stringify(lockedTrade));renderLock()
+};
+$('recordChange').onclick=()=>{if(!lockedTrade)return;changeLog.unshift({id:Date.now(),tradeLockedAt:lockedTrade.lockedAt,reason:$('changeReason').value,notes:$('changeNotes').value,time:new Date().toISOString()});localStorage.setItem('calcufaithChangeLog',JSON.stringify(changeLog));$('changeNotes').value='';renderChanges()};
+$('completeLock').onclick=()=>{lockedTrade=null;localStorage.removeItem('calcufaithLockedTrade');renderLock()};
+function renderChanges(){const c=$('changeHistory');c.innerHTML='';changeLog.slice(0,20).forEach(x=>{const r=document.createElement('div');r.className='trade-row';r.innerHTML=`<div><strong>${x.reason}</strong><small>${new Date(x.time).toLocaleString()}</small><small>${x.notes||''}</small></div>`;c.appendChild(r)})}
+
+function saveMain(){const d={};Object.entries(f).forEach(([k,v])=>d[k]=v.value);d.checks=checks.map(x=>x.checked);d.pledge=pledge.checked;localStorage.setItem('calcufaithV4',JSON.stringify(d))}
+function loadMain(){try{const d=JSON.parse(localStorage.getItem('calcufaithV4'))||JSON.parse(localStorage.getItem('calcufaithV3'))||JSON.parse(localStorage.getItem('calcufaithV2'));if(!d)return;Object.entries(f).forEach(([k,v])=>{if(d[k]!==undefined)v.value=d[k]});if(Array.isArray(d.checks))checks.forEach((x,i)=>x.checked=!!d.checks[i]);pledge.checked=!!d.pledge}catch(e){}}
+loadMain();calc();updateScore();$('tradeDate').value=localDate(new Date());renderCalendar();renderTrades();renderLock();renderChanges();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));
 </script>
 </body>
