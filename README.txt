@@ -1,27 +1,22 @@
-CALCUFAITH
+CALCUFAITH V3 — AI COACH + KILL ZONES
 
-Calculate the Risk. Trust the Process.
-
-FEATURES
-- XAUUSD lot-size calculator
-- Account balance and adjustable risk percentage
-- Buy or Sell direction
-- Entry, stop-loss, and take-profit prices
-- Automatic projected profit
-- Risk-to-reward ratio
-- Stewardship Checklist
-- 80% qualification threshold
-- Required core risk confirmations
-- Stewardship pledge
-- Saved settings and checklist progress
-- Offline support after first visit
-
-IPHONE INSTALLATION
-1. Upload all files in this ZIP to a secure web host such as GitHub Pages, Netlify, or your own website.
-2. Open the hosted Calcufaith page in Safari.
-3. Tap Share.
-4. Tap Add to Home Screen.
-5. Open Calcufaith from your iPhone Home Screen.
+NEW FEATURES
+- Offline Calcufaith AI Coach
+- Uses calculator values, Stewardship Score, core items, pledge, RR, risk percentage, and kill-zone status
+- New York Kill Zone clock: 7:00 AM–10:00 AM Central Time
+- London Kill Zone clock: 2:00 AM–3:30 AM Central Time
+- 8:30 AM New York volume-window countdown
+- Four-tab mobile navigation
+- Existing data is preserved when possible
 
 IMPORTANT
-The default XAUUSD value is $100 per $1 Gold move at 1.00 lot. Broker specifications vary, so confirm the contract value before trading.
+The AI Coach is rule-based. It does not connect to ChatGPT, read live charts, or place trades.
+
+UPDATE YOUR EXISTING GITHUB APP
+1. Download and unzip this package.
+2. Open your Calcufaith GitHub repository.
+3. Upload all five files from this folder.
+4. Replace the existing files and commit the changes.
+5. Wait about one minute for GitHub Pages to redeploy.
+6. Refresh the website.
+7. If the Home Screen app is cached, close it completely and reopen it. If needed, remove and re-add it to the Home Screen.
