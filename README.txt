@@ -1,17 +1,26 @@
-CALCUFAITH V4.4 — DAILY JOURNAL PAGES
+CALCUFAITH V5 — SCRIPTURE OF THE MOMENT
 
 NEW
-- Stronger green calendar tiles for profitable days
-- Stronger red calendar tiles for losing days
-- Tap any calendar date to open a dedicated Daily Journal page
-- Back button returns to the monthly calendar
-- Daily page shows Daily Net, number of trades, and daily win rate
-- Add, review, and delete trades from the selected date
-- Monthly report card and all existing tools remain
+- Large built-in KJV Scripture library
+- New Scripture every time a navigation tab is tapped
+- Categories include faith, stewardship, wisdom, discipline, patience, courage, peace, diligence, prosperity, and hope
+- Short reflection accompanies every Scripture
+- No immediate repeats; the library is shuffled before repeating
+- Next Scripture button
+- Favorite/unfavorite button
+- Favorites save locally on the device
+- Works offline after the app has cached
 
-LAPTOP
-Calcufaith works from the same GitHub Pages link on a laptop.
-In Chrome or Microsoft Edge, open the link and select Install App from the address bar or browser menu.
+UNCHANGED
+- Manual trade entry
+- Take-Profit field
+- Lot-size and risk calculations
+- Calendar and daily journal pages
+- Monthly report card
+- Stewardship Checklist
+- AI Coach
+- Kill Zones
+- Discipline Lock
 
 UPDATE
-Upload and replace the same five files in the existing GitHub repository, then commit.
+Upload and replace the same five files in the existing Calcufaith GitHub repository, then commit.
