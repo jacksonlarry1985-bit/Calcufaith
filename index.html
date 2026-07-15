@@ -129,6 +129,16 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 .trade-row{display:grid;grid-template-columns:1fr auto;gap:10px;background:var(--card2);border-radius:12px;padding:11px}
 .trade-row small{color:var(--muted);display:block;margin-top:3px}
 .trade-actions{display:flex;gap:6px;align-items:center}.mini{border:0;border-radius:9px;padding:8px;background:#263143;color:#fff}
+.favorites-empty{color:var(--muted);text-align:center;padding:22px 10px}
+.favorite-groups{display:flex;flex-direction:column;gap:14px}
+.favorite-group h3{margin:0 0 8px;color:var(--gold);font-size:15px;text-transform:capitalize}
+.favorite-card{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:8px}
+.favorite-card blockquote{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:14px;line-height:1.5;color:#fff8dc}
+.favorite-card .fav-ref{color:var(--gold);font-weight:900;font-size:12px;margin-top:7px}
+.favorite-card .fav-reflection{color:var(--muted);font-size:11px;line-height:1.45;margin-top:7px}
+.favorite-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.favorite-actions button{border:0;border-radius:9px;padding:8px 10px;background:#263143;color:#fff;font-size:11px;font-weight:800}
+.favorite-note{margin-top:10px;min-height:72px;font-size:14px}
 .footer{text-align:center;color:var(--muted);font-size:10px;line-height:1.45;padding:4px 10px 14px}
 @media(max-width:430px){.tabs{grid-template-columns:repeat(3,1fr)}.monthstats{grid-template-columns:repeat(2,1fr)}.day{min-height:64px;padding:6px}.daypnl{font-size:10px}}
 </style>
@@ -161,6 +171,7 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 <button class="tab" data-tab="calendarPanel">Calendar</button>
 <button class="tab" data-tab="sessions">Kill Zones</button>
 <button class="tab" data-tab="lock">Discipline Lock</button>
+<button class="tab" data-tab="myScriptures">My Scriptures</button>
 </nav>
 
 <section id="trade" class="panel active">
@@ -312,6 +323,14 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 </div>
 </section>
 
+<section id="myScriptures" class="panel">
+<div class="card">
+<h2 class="title">My Scriptures</h2>
+<div class="sub">Your favorited Scriptures are saved on this device and organized by category.</div>
+<div id="favoriteScriptureList"></div>
+</div>
+</section>
+
 <div class="footer">Calcufaith stores information locally on this device. It does not place trades or connect to your broker.</div>
 </main>
 
@@ -321,6 +340,7 @@ document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
  t.classList.add('active');$(t.dataset.tab).classList.add('active');
+ if(t.dataset.tab==='myScriptures')renderFavoriteScriptures();
  showNextScripture()
 });
 
@@ -531,9 +551,10 @@ $('favoriteScripture').onclick=()=>{
  if(!currentScripture)return;
  const idx=favoriteScriptures.findIndex(v=>v.r===currentScripture.r&&v.t===currentScripture.t);
  if(idx>=0)favoriteScriptures.splice(idx,1);
- else favoriteScriptures.push(currentScripture);
+ else favoriteScriptures.push({...currentScripture,note:''});
  localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
- $('favoriteScripture').textContent=idx>=0?'♡ Favorite':'♥ Favorited'
+ $('favoriteScripture').textContent=idx>=0?'♡ Favorite':'♥ Favorited';
+ renderFavoriteScriptures()
 };
 
 $('shareScripture').onclick=async()=>{
@@ -572,9 +593,81 @@ $('readChapter').onclick=()=>{
  window.open(url,'_blank','noopener,noreferrer');
 };
 
+
+function shareFavoriteScripture(item){
+ const shareText=`“${item.t}”\n— ${item.r} (KJV)\n\nReflection: ${item.x||''}${item.note?`\n\nMy note: ${item.note}`:''}\n\nShared from Calcufaith`;
+ if(navigator.share){
+   navigator.share({title:`${item.r} — KJV`,text:shareText}).catch(()=>{});
+ }else if(navigator.clipboard){
+   navigator.clipboard.writeText(shareText);
+ }else{
+   prompt('Copy this Scripture:',shareText);
+ }
+}
+
+function renderFavoriteScriptures(){
+ const root=$('favoriteScriptureList');
+ if(!root)return;
+ if(!favoriteScriptures.length){
+   root.innerHTML='<div class="favorites-empty">You have not favorited any Scriptures yet.</div>';
+   return;
+ }
+
+ const grouped={};
+ favoriteScriptures.forEach((item,i)=>{
+   const cat=item.c||'favorites';
+   if(!grouped[cat])grouped[cat]=[];
+   grouped[cat].push({...item,_index:i});
+ });
+
+ root.innerHTML='<div class="favorite-groups">'+Object.entries(grouped).map(([cat,items])=>`
+   <div class="favorite-group">
+     <h3>${cat}</h3>
+     ${items.map(item=>`
+       <div class="favorite-card">
+         <blockquote>“${item.t}”</blockquote>
+         <div class="fav-ref">— ${item.r} (KJV)</div>
+         <div class="fav-reflection">${item.x||''}</div>
+         <textarea class="favorite-note" data-fav-note="${item._index}" placeholder="Add a personal note...">${item.note||''}</textarea>
+         <div class="favorite-actions">
+           <button data-fav-share="${item._index}">Share</button>
+           <button data-fav-chapter="${item._index}">Read Chapter</button>
+           <button data-fav-remove="${item._index}">Remove</button>
+         </div>
+       </div>
+     `).join('')}
+   </div>
+ `).join('')+'</div>';
+
+ root.querySelectorAll('[data-fav-note]').forEach(el=>el.oninput=()=>{
+   const i=+el.dataset.favNote;
+   favoriteScriptures[i].note=el.value;
+   localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
+ });
+
+ root.querySelectorAll('[data-fav-share]').forEach(btn=>btn.onclick=()=>{
+   shareFavoriteScripture(favoriteScriptures[+btn.dataset.favShare]);
+ });
+
+ root.querySelectorAll('[data-fav-chapter]').forEach(btn=>btn.onclick=()=>{
+   const item=favoriteScriptures[+btn.dataset.favChapter];
+   window.open(chapterUrl(item.r),'_blank','noopener,noreferrer');
+ });
+
+ root.querySelectorAll('[data-fav-remove]').forEach(btn=>btn.onclick=()=>{
+   favoriteScriptures.splice(+btn.dataset.favRemove,1);
+   localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
+   renderFavoriteScriptures();
+   if(currentScripture){
+     const saved=favoriteScriptures.some(v=>v.r===currentScripture.r&&v.t===currentScripture.t);
+     $('favoriteScripture').textContent=saved?'♥ Favorited':'♡ Favorite';
+   }
+ });
+}
+
 function saveMain(){const d={};Object.entries(f).forEach(([k,v])=>d[k]=v.value);d.checks=checks.map(x=>x.checked);d.pledge=pledge.checked;localStorage.setItem('calcufaithV4',JSON.stringify(d))}
 function loadMain(){try{const d=JSON.parse(localStorage.getItem('calcufaithV4'))||JSON.parse(localStorage.getItem('calcufaithV3'))||JSON.parse(localStorage.getItem('calcufaithV2'));if(!d)return;Object.entries(f).forEach(([k,v])=>{if(d[k]!==undefined)v.value=d[k]});if(Array.isArray(d.checks))checks.forEach((x,i)=>x.checked=!!d.checks[i]);pledge.checked=!!d.pledge}catch(e){}}
-loadMain();calc();updateScore();$('tradeDate').value=localDate(new Date());renderCalendar();renderTrades();renderLock();renderChanges();resetScriptureOrder();showNextScripture();
+loadMain();calc();updateScore();$('tradeDate').value=localDate(new Date());renderCalendar();renderTrades();renderLock();renderChanges();renderFavoriteScriptures();resetScriptureOrder();showNextScripture();
 if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));
 </script>
 </body>

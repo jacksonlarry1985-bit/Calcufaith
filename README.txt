@@ -1,18 +1,21 @@
-CALCUFAITH V6 — SHARE SCRIPTURE + READ CHAPTER
+CALCUFAITH V7 — MY SCRIPTURES
 
-NEW SCRIPTURE FEATURES
-- Share Scripture opens the phone or computer share sheet
-- Share by text message, email, social media, notes, and more
-- If native sharing is unavailable, the Scripture is copied to the clipboard
-- Read Chapter opens the complete KJV chapter for the current Scripture
-- Favorite and Next Scripture remain available
-- Scripture still changes whenever a navigation tab is tapped
-- Large offline Scripture library and reflections remain included
+NEW
+- My Scriptures tab
+- All favorited Scriptures are visible in one place
+- Favorites grouped by category
+- Share any favorite
+- Open the full KJV chapter
+- Remove a favorite
+- Add a personal note to each Scripture
+- Notes and favorites save locally on the device
 
 UNCHANGED
+- Rotating Scripture of the Moment
+- Favorite, Share, Read Chapter, and Next Scripture
 - Manual Take-Profit field
-- Trade calculator and lot-size calculations
-- Calendar and Daily Journal pages
+- Trade calculator
+- Calendar and Daily Journal
 - Monthly Report Card
 - Stewardship Checklist
 - AI Coach
