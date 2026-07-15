@@ -38,8 +38,8 @@ h1{font-size:32px;margin:0}.tag{color:var(--gold);font-weight:850;margin-top:4px
 .scripture-text{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.5;margin-top:7px;color:#fff8dc}
 .scripture-ref{font-size:12px;font-weight:900;color:var(--gold);margin-top:7px}
 .scripture-reflection{color:var(--muted);font-size:11px;line-height:1.45;margin-top:8px}
-.scripture-actions{display:flex;justify-content:center;gap:8px;margin-top:10px}
-.scripture-actions button{border:0;border-radius:10px;padding:8px 11px;background:var(--card2);color:var(--text);font-size:11px;font-weight:850}
+.scripture-actions{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.scripture-actions button{border:0;border-radius:10px;padding:9px 11px;background:var(--card2);color:var(--text);font-size:11px;font-weight:850;min-width:105px}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:16px;position:sticky;top:max(7px,env(safe-area-inset-top));z-index:10;backdrop-filter:blur(18px);margin-bottom:12px}
 .tab{border:0;border-radius:11px;padding:10px 4px;font-size:12px;font-weight:850;color:var(--muted);background:transparent}
 .tab.active{background:var(--gold);color:#141414}
@@ -147,8 +147,10 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 <div id="scriptureRef" class="scripture-ref"></div>
 <div id="scriptureReflection" class="scripture-reflection"></div>
 <div class="scripture-actions">
-<button id="nextScripture">Next Scripture</button>
 <button id="favoriteScripture">♡ Favorite</button>
+<button id="shareScripture">Share</button>
+<button id="readChapter">Read Chapter</button>
+<button id="nextScripture">Next Scripture</button>
 </div>
 </div>
 
@@ -532,6 +534,42 @@ $('favoriteScripture').onclick=()=>{
  else favoriteScriptures.push(currentScripture);
  localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
  $('favoriteScripture').textContent=idx>=0?'♡ Favorite':'♥ Favorited'
+};
+
+$('shareScripture').onclick=async()=>{
+ if(!currentScripture)return;
+ const shareText=`“${currentScripture.t}”\n— ${currentScripture.r} (KJV)\n\nReflection: ${currentScripture.x}\n\nShared from Calcufaith`;
+ try{
+   if(navigator.share){
+     await navigator.share({
+       title:`${currentScripture.r} — KJV`,
+       text:shareText
+     });
+   }else if(navigator.clipboard){
+     await navigator.clipboard.writeText(shareText);
+     const old=$('shareScripture').textContent;
+     $('shareScripture').textContent='Copied';
+     setTimeout(()=>$('shareScripture').textContent=old,1500);
+   }else{
+     prompt('Copy this Scripture:',shareText);
+   }
+ }catch(err){
+   // User may cancel the share sheet; no alert is needed.
+ }
+};
+
+function chapterUrl(reference){
+ const match=reference.match(/^(.+?)\s+(\d+)(?::.*)?$/);
+ if(!match)return 'https://www.biblegateway.com/';
+ const book=encodeURIComponent(match[1].trim());
+ const chapter=encodeURIComponent(match[2]);
+ return `https://www.biblegateway.com/passage/?search=${book}%20${chapter}&version=KJV`;
+}
+
+$('readChapter').onclick=()=>{
+ if(!currentScripture)return;
+ const url=chapterUrl(currentScripture.r);
+ window.open(url,'_blank','noopener,noreferrer');
 };
 
 function saveMain(){const d={};Object.entries(f).forEach(([k,v])=>d[k]=v.value);d.checks=checks.map(x=>x.checked);d.pledge=pledge.checked;localStorage.setItem('calcufaithV4',JSON.stringify(d))}

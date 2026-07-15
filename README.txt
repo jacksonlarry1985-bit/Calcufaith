@@ -1,22 +1,19 @@
-CALCUFAITH V5 — SCRIPTURE OF THE MOMENT
+CALCUFAITH V6 — SHARE SCRIPTURE + READ CHAPTER
 
-NEW
-- Large built-in KJV Scripture library
-- New Scripture every time a navigation tab is tapped
-- Categories include faith, stewardship, wisdom, discipline, patience, courage, peace, diligence, prosperity, and hope
-- Short reflection accompanies every Scripture
-- No immediate repeats; the library is shuffled before repeating
-- Next Scripture button
-- Favorite/unfavorite button
-- Favorites save locally on the device
-- Works offline after the app has cached
+NEW SCRIPTURE FEATURES
+- Share Scripture opens the phone or computer share sheet
+- Share by text message, email, social media, notes, and more
+- If native sharing is unavailable, the Scripture is copied to the clipboard
+- Read Chapter opens the complete KJV chapter for the current Scripture
+- Favorite and Next Scripture remain available
+- Scripture still changes whenever a navigation tab is tapped
+- Large offline Scripture library and reflections remain included
 
 UNCHANGED
-- Manual trade entry
-- Take-Profit field
-- Lot-size and risk calculations
-- Calendar and daily journal pages
-- Monthly report card
+- Manual Take-Profit field
+- Trade calculator and lot-size calculations
+- Calendar and Daily Journal pages
+- Monthly Report Card
 - Stewardship Checklist
 - AI Coach
 - Kill Zones
