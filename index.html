@@ -9,14 +9,14 @@
 <meta name="apple-mobile-web-app-title" content="Calcufaith V8">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>Calcufaith V8</title>
+<title>Calcufaith V8.1</title>
 <style>
 :root{--bg:#070b16;--card:#111827;--card2:#182235;--line:rgba(255,255,255,.09);--text:#f8fafc;--muted:#a9b3c6;--gold:#f4c430;--green:#34d399;--red:#fb7185;--blue:#60a5fa}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -12%,rgba(244,196,48,.17),transparent 30%),linear-gradient(180deg,#090e1a,#0b1020);padding:max(16px,env(safe-area-inset-top)) 12px max(22px,env(safe-area-inset-bottom))}
 .app{max-width:640px;margin:auto}.hero{text-align:center;padding:8px 6px 14px}.logo{width:66px;height:66px;border-radius:20px;margin:0 auto 9px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe27a,#d49b00);color:#111827;font-size:36px;font-weight:950}
 h1{font-size:32px;margin:0}.tag{color:var(--gold);font-weight:850;margin-top:4px}.verse{color:var(--muted);font-size:12px;line-height:1.4;margin:9px auto 0;max-width:460px}
-.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:16px;position:sticky;top:max(7px,env(safe-area-inset-top));z-index:10;backdrop-filter:blur(18px);margin-bottom:12px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:16px;position:sticky;top:max(7px,env(safe-area-inset-top));z-index:10;backdrop-filter:blur(18px);margin-bottom:12px}
 .tab{border:0;border-radius:11px;padding:10px 4px;font-size:12px;font-weight:850;color:var(--muted);background:transparent}.tab.active{background:var(--gold);color:#141414}
 .panel{display:none}.panel.active{display:block}.card{background:rgba(17,24,39,.97);border:1px solid var(--line);border-radius:21px;padding:17px;margin-bottom:12px;box-shadow:0 16px 46px rgba(0,0,0,.25)}
 .title{margin:0 0 3px;font-size:20px}.sub{color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:9px}
@@ -42,10 +42,10 @@ textarea{min-height:96px;resize:vertical}input:focus,select:focus,textarea:focus
 </head>
 <body>
 <main class="app">
-<header class="hero"><div class="logo">C</div><h1>Calcufaith V8</h1><div class="tag">Calculate the Risk. Trust the Process.</div><div class="verse">“Moreover it is required in stewards, that a man be found faithful.” — 1 Corinthians 4:2 (KJV)</div></header>
+<header class="hero"><div class="logo">C</div><h1>Calcufaith V8.1</h1><div class="tag">Calculate the Risk. Trust the Process.</div><div class="verse">“Moreover it is required in stewards, that a man be found faithful.” — 1 Corinthians 4:2 (KJV)</div></header>
 
 <nav class="tabs">
-<button class="tab active" data-tab="trade">Trade</button><button class="tab" data-tab="steward">Stewardship</button><button class="tab" data-tab="coach">AI Coach</button><button class="tab" data-tab="calendarPanel">Calendar</button><button class="tab" data-tab="sessions">Kill Zones</button><button class="tab" data-tab="lock">Discipline</button>
+<button class="tab active" data-tab="trade">Trade</button><button class="tab" data-tab="steward">Stewardship</button><button class="tab" data-tab="coach">AI Coach</button><button class="tab" data-tab="calendarPanel">Calendar</button><button class="tab" data-tab="scriptures">Scriptures</button><button class="tab" data-tab="sessions">Kill Zones</button><button class="tab" data-tab="lock">Discipline</button>
 </nav>
 
 <section id="trade" class="panel active"><div class="card">
@@ -95,9 +95,35 @@ textarea{min-height:96px;resize:vertical}input:focus,select:focus,textarea:focus
 <div class="trade-list" id="tradeList"></div>
 </div></section>
 
+
+<section id="scriptures" class="panel">
+  <div class="card">
+    <h2 class="title">My Scriptures</h2>
+    <div class="sub">Rotate through faith, discipline, stewardship, courage, and wisdom scriptures.</div>
+    <div class="summary">
+      <div style="font-size:17px;line-height:1.65;font-weight:750" id="scriptureText"></div>
+      <div style="margin-top:12px;color:var(--gold);font-weight:950" id="scriptureRef"></div>
+    </div>
+    <div class="grid2" style="margin-top:12px">
+      <button id="nextScripture" class="btn gold">NEXT SCRIPTURE</button>
+      <button id="favoriteScripture" class="btn dark">☆ FAVORITE</button>
+    </div>
+    <div class="grid2" style="margin-top:9px">
+      <button id="shareScripture" class="btn dark">SHARE SCRIPTURE</button>
+      <button id="readChapter" class="btn dark">READ CHAPTER</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="title">Favorite Scriptures</h2>
+    <div class="sub">Favorites are saved on this device.</div>
+    <div id="favoriteList" class="trade-list"></div>
+  </div>
+</section>
+
 <section id="sessions" class="panel"><div class="card"><h2 class="title">Kill Zone Clock — Central Time</h2><div class="clock" id="clock">--:--:--</div><div class="session"><strong>London:</strong> 2:00–3:30 AM CT</div><div class="session"><strong>New York:</strong> 7:00–10:00 AM CT</div><div class="session"><strong>Volume Window:</strong> 8:30 AM CT</div></div></section>
 <section id="lock" class="panel"><div class="card"><h2 class="title">Discipline Lock</h2><p>Maximum 3 trades per day. One open trade at a time. Do not chase the initial break. Wait for your confirmation.</p><div class="notice">Higher-timeframe bias → liquidity → CHOCH/BOS → retest → engulfing or rejection confirmation.</div></div></section>
-<div class="footer">Calcufaith V8 stores information locally on this device. It does not place trades or connect to your broker.</div>
+<div class="footer">Calcufaith V8.1 stores information locally on this device. It does not place trades or connect to your broker.</div>
 </main>
 
 <script>
@@ -159,6 +185,70 @@ window.removeTrade=id=>{journal=journal.filter(t=>t.id!==id);localStorage.setIte
 $('tradeDate').onchange=e=>{selectedDate=e.target.value;const d=new Date(selectedDate+'T12:00:00');viewMonth=new Date(d.getFullYear(),d.getMonth(),1);render()};
 $('prevMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()-1);render()};$('nextMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()+1);render()};
 function clock(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit',second:'2-digit'}).format(new Date());$('clock').textContent=p}setInterval(clock,1000);clock();render();
+
+const SCRIPTURES=[
+ {ref:"Proverbs 21:5",text:"The thoughts of the diligent tend only to plenteousness; but of every one that is hasty only to want.",chapter:"https://www.biblegateway.com/passage/?search=Proverbs%2021&version=KJV"},
+ {ref:"1 Corinthians 4:2",text:"Moreover it is required in stewards, that a man be found faithful.",chapter:"https://www.biblegateway.com/passage/?search=1%20Corinthians%204&version=KJV"},
+ {ref:"Proverbs 16:3",text:"Commit thy works unto the LORD, and thy thoughts shall be established.",chapter:"https://www.biblegateway.com/passage/?search=Proverbs%2016&version=KJV"},
+ {ref:"Isaiah 41:10",text:"Fear thou not; for I am with thee: be not dismayed; for I am thy God.",chapter:"https://www.biblegateway.com/passage/?search=Isaiah%2041&version=KJV"},
+ {ref:"Philippians 4:13",text:"I can do all things through Christ which strengtheneth me.",chapter:"https://www.biblegateway.com/passage/?search=Philippians%204&version=KJV"},
+ {ref:"2 Timothy 1:7",text:"For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.",chapter:"https://www.biblegateway.com/passage/?search=2%20Timothy%201&version=KJV"},
+ {ref:"Habakkuk 2:2",text:"Write the vision, and make it plain upon tables, that he may run that readeth it.",chapter:"https://www.biblegateway.com/passage/?search=Habakkuk%202&version=KJV"},
+ {ref:"Luke 14:28",text:"For which of you, intending to build a tower, sitteth not down first, and counteth the cost?",chapter:"https://www.biblegateway.com/passage/?search=Luke%2014&version=KJV"},
+ {ref:"Proverbs 24:3-4",text:"Through wisdom is an house builded; and by understanding it is established.",chapter:"https://www.biblegateway.com/passage/?search=Proverbs%2024&version=KJV"},
+ {ref:"Psalm 37:5",text:"Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",chapter:"https://www.biblegateway.com/passage/?search=Psalm%2037&version=KJV"},
+ {ref:"Galatians 6:9",text:"And let us not be weary in well doing: for in due season we shall reap, if we faint not.",chapter:"https://www.biblegateway.com/passage/?search=Galatians%206&version=KJV"},
+ {ref:"James 1:5",text:"If any of you lack wisdom, let him ask of God, that giveth to all men liberally.",chapter:"https://www.biblegateway.com/passage/?search=James%201&version=KJV"}
+];
+let scriptureIndex=Number(localStorage.getItem("calcufaithScriptureIndexV8")||0)%SCRIPTURES.length;
+let scriptureFavorites=JSON.parse(localStorage.getItem("calcufaithScriptureFavoritesV8")||"[]");
+
+function currentScripture(){return SCRIPTURES[scriptureIndex]}
+function renderScripture(){
+ const s=currentScripture();
+ $("scriptureText").textContent="“"+s.text+"”";
+ $("scriptureRef").textContent=s.ref+" (KJV)";
+ $("favoriteScripture").textContent=scriptureFavorites.includes(s.ref)?"★ FAVORITED":"☆ FAVORITE";
+ renderFavorites();
+}
+function renderFavorites(){
+ const box=$("favoriteList");
+ const favs=SCRIPTURES.filter(s=>scriptureFavorites.includes(s.ref));
+ box.innerHTML=favs.length?favs.map(s=>'<div class="trade-row win"><div><strong>'+escapeHtml(s.ref)+'</strong><small>'+escapeHtml(s.text)+'</small></div><button class="mini" data-remove-fav="'+escapeHtml(s.ref)+'">Remove</button></div>').join(""):'<div class="notice">No favorite scriptures yet.</div>';
+ box.querySelectorAll("[data-remove-fav]").forEach(btn=>btn.onclick=()=>{
+   scriptureFavorites=scriptureFavorites.filter(r=>r!==btn.dataset.removeFav);
+   localStorage.setItem("calcufaithScriptureFavoritesV8",JSON.stringify(scriptureFavorites));
+   renderScripture();
+ });
+}
+$("nextScripture").onclick=()=>{
+ scriptureIndex=(scriptureIndex+1)%SCRIPTURES.length;
+ localStorage.setItem("calcufaithScriptureIndexV8",String(scriptureIndex));
+ renderScripture();
+};
+$("favoriteScripture").onclick=()=>{
+ const ref=currentScripture().ref;
+ scriptureFavorites=scriptureFavorites.includes(ref)?scriptureFavorites.filter(r=>r!==ref):[...scriptureFavorites,ref];
+ localStorage.setItem("calcufaithScriptureFavoritesV8",JSON.stringify(scriptureFavorites));
+ renderScripture();
+};
+$("shareScripture").onclick=async()=>{
+ const s=currentScripture(), text='“'+s.text+'” — '+s.ref+' (KJV)';
+ try{
+   if(navigator.share) await navigator.share({title:"Calcufaith Scripture",text});
+   else if(navigator.clipboard){await navigator.clipboard.writeText(text);alert("Scripture copied.");}
+   else alert(text);
+ }catch(e){}
+};
+$("readChapter").onclick=()=>window.open(currentScripture().chapter,"_blank","noopener");
+renderScripture();
+
+if("serviceWorker" in navigator){
+ window.addEventListener("load",()=>{
+   navigator.serviceWorker.register("./service-worker.js?v=8.1").catch(()=>{});
+ });
+}
+
 </script>
 </body>
 </html>

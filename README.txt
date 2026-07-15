@@ -1,26 +1,27 @@
-CALCUFAITH V7 — MY SCRIPTURES
+CALCUFAITH V8.1
 
-NEW
-- My Scriptures tab
-- All favorited Scriptures are visible in one place
-- Favorites grouped by category
-- Share any favorite
-- Open the full KJV chapter
-- Remove a favorite
-- Add a personal note to each Scripture
-- Notes and favorites save locally on the device
+UPLOAD THESE FILES TO THE ROOT OF YOUR GITHUB REPOSITORY:
+- index.html
+- manifest.json
+- icon.svg
+- service-worker.js
 
-UNCHANGED
-- Rotating Scripture of the Moment
-- Favorite, Share, Read Chapter, and Next Scripture
-- Manual Take-Profit field
-- Trade calculator
-- Calendar and Daily Journal
-- Monthly Report Card
-- Stewardship Checklist
-- AI Coach
-- Kill Zones
-- Discipline Lock
+IMPORTANT:
+1. Delete or replace the old index.html.
+2. Delete or replace the old manifest.json.
+3. Delete or replace the old service-worker.js.
+4. Keep the filenames exactly as shown.
+5. Commit all four files.
+6. Wait 1–3 minutes for GitHub Pages.
+7. Delete the old Home Screen app from your iPhone.
+8. Open the GitHub Pages link in Safari and add it to the Home Screen again.
 
-UPDATE
-Upload and replace the same five files in the existing Calcufaith GitHub repository, then commit.
+V8.1 FIXES
+- Loss amounts save as negative values.
+- Selecting Loss converts a positive amount to negative automatically.
+- Losing calendar days are red.
+- Winning calendar days are green.
+- Multiple trades combine into a daily net.
+- Monthly P&L subtracts losses correctly.
+- Cache version is updated to stop the old app from loading.
+- Rotating scriptures, favorites, sharing, and chapter links are included.
