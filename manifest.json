@@ -1,11 +1,11 @@
 {
-  "name": "Calcufaith",
+  "name": "Calcufaith V8",
   "short_name": "Calcufaith",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#070b16",
   "theme_color": "#0b1020",
-  "description": "Trade calculator, Stewardship Checklist, AI Coach, P&L calendar, Discipline Lock, and kill-zone clock.",
+  "description": "Trade calculator, stewardship checklist, AI coach, corrected P&L calendar, discipline lock, and kill-zone clock.",
   "icons": [
     {
       "src": "icon.svg",

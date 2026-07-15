@@ -6,669 +6,159 @@
 <meta name="theme-color" content="#0b1020">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Calcufaith">
+<meta name="apple-mobile-web-app-title" content="Calcufaith V8">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon.svg">
-<title>Calcufaith</title>
+<title>Calcufaith V8</title>
 <style>
-:root{
- --bg:#070b16;--card:#111827;--card2:#182235;--line:rgba(255,255,255,.08);
- --text:#f8fafc;--muted:#a9b3c6;--gold:#f4c430;--green:#34d399;
- --orange:#fb923c;--red:#fb7185;--blue:#60a5fa
-}
+:root{--bg:#070b16;--card:#111827;--card2:#182235;--line:rgba(255,255,255,.09);--text:#f8fafc;--muted:#a9b3c6;--gold:#f4c430;--green:#34d399;--red:#fb7185;--blue:#60a5fa}
 *{box-sizing:border-box}
-body{
- margin:0;min-height:100vh;color:var(--text);
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- background:radial-gradient(circle at 50% -12%,rgba(244,196,48,.17),transparent 30%),linear-gradient(180deg,#090e1a,#0b1020);
- padding:max(16px,env(safe-area-inset-top)) 12px max(22px,env(safe-area-inset-bottom))
-}
-.app{max-width:620px;margin:auto}
-.hero{text-align:center;padding:8px 6px 14px}
-.logo{width:66px;height:66px;border-radius:20px;margin:0 auto 9px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe27a,#d49b00);color:#111827;font-size:36px;font-weight:950}
-h1{font-size:32px;margin:0}.tag{color:var(--gold);font-weight:850;margin-top:4px}
-.verse{color:var(--muted);font-size:12px;line-height:1.4;margin:9px auto 0;max-width:460px}
-.scripture-card{
- margin:0 auto 13px;max-width:620px;background:linear-gradient(180deg,rgba(244,196,48,.10),rgba(244,196,48,.035));
- border:1px solid rgba(244,196,48,.28);border-radius:18px;padding:14px 16px;text-align:center;
- transition:opacity .22s ease,transform .22s ease
-}
-.scripture-card.fade{opacity:0;transform:translateY(-4px)}
-.scripture-label{color:var(--gold);font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
-.scripture-text{font-family:Georgia,"Times New Roman",serif;font-size:15px;line-height:1.5;margin-top:7px;color:#fff8dc}
-.scripture-ref{font-size:12px;font-weight:900;color:var(--gold);margin-top:7px}
-.scripture-reflection{color:var(--muted);font-size:11px;line-height:1.45;margin-top:8px}
-.scripture-actions{display:flex;justify-content:center;gap:8px;margin-top:10px;flex-wrap:wrap}
-.scripture-actions button{border:0;border-radius:10px;padding:9px 11px;background:var(--card2);color:var(--text);font-size:11px;font-weight:850;min-width:105px}
+body{margin:0;min-height:100vh;color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 50% -12%,rgba(244,196,48,.17),transparent 30%),linear-gradient(180deg,#090e1a,#0b1020);padding:max(16px,env(safe-area-inset-top)) 12px max(22px,env(safe-area-inset-bottom))}
+.app{max-width:640px;margin:auto}.hero{text-align:center;padding:8px 6px 14px}.logo{width:66px;height:66px;border-radius:20px;margin:0 auto 9px;display:grid;place-items:center;background:linear-gradient(145deg,#ffe27a,#d49b00);color:#111827;font-size:36px;font-weight:950}
+h1{font-size:32px;margin:0}.tag{color:var(--gold);font-weight:850;margin-top:4px}.verse{color:var(--muted);font-size:12px;line-height:1.4;margin:9px auto 0;max-width:460px}
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:rgba(255,255,255,.04);padding:5px;border-radius:16px;position:sticky;top:max(7px,env(safe-area-inset-top));z-index:10;backdrop-filter:blur(18px);margin-bottom:12px}
-.tab{border:0;border-radius:11px;padding:10px 4px;font-size:12px;font-weight:850;color:var(--muted);background:transparent}
-.tab.active{background:var(--gold);color:#141414}
-.panel{display:none}.panel.active{display:block}
-.card{background:rgba(17,24,39,.97);border:1px solid var(--line);border-radius:21px;padding:17px;margin-bottom:12px;box-shadow:0 16px 46px rgba(0,0,0,.25)}
+.tab{border:0;border-radius:11px;padding:10px 4px;font-size:12px;font-weight:850;color:var(--muted);background:transparent}.tab.active{background:var(--gold);color:#141414}
+.panel{display:none}.panel.active{display:block}.card{background:rgba(17,24,39,.97);border:1px solid var(--line);border-radius:21px;padding:17px;margin-bottom:12px;box-shadow:0 16px 46px rgba(0,0,0,.25)}
 .title{margin:0 0 3px;font-size:20px}.sub{color:var(--muted);font-size:13px;line-height:1.4;margin-bottom:9px}
-label{display:block;font-weight:800;margin:13px 0 7px}
-.hint{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:3px}
+label{display:block;font-weight:800;margin:13px 0 7px}.hint{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:3px}
 input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.12);background:var(--card2);color:var(--text);font-size:17px;padding:13px;border-radius:14px;outline:none}
-textarea{min-height:96px;resize:vertical}
-input:focus,select:focus,textarea:focus{border-color:var(--gold)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.riskbuttons{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}
-.riskbuttons button{border:0;border-radius:11px;padding:10px 2px;font-weight:900;background:var(--card2);color:var(--text)}
-.riskbuttons button.active{background:var(--gold);color:#151515}
-.summary{margin-top:16px;background:#080d18;border:1px solid rgba(244,196,48,.35);border-radius:18px;padding:15px}
-.metric{text-align:center;padding:3px 0 10px}.metric .v{font-size:46px;color:var(--gold);font-weight:950;line-height:1}.metric .l{color:var(--muted);font-size:12px;margin-top:5px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.stat{background:var(--card2);padding:11px 6px;border-radius:12px;text-align:center}.stat strong{display:block;font-size:18px}.stat span{color:var(--muted);font-size:10px}
-.good{color:var(--green)!important}.bad{color:var(--red)!important}
-.notice{display:none;margin-top:11px;padding:11px;border-radius:12px;font-size:12px;line-height:1.4}.notice.show{display:block;background:rgba(251,113,133,.1);color:#fecdd3}
-details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:13px;padding:12px}summary{font-weight:900;color:var(--gold)}
-.checklist{display:flex;flex-direction:column;gap:8px;margin-top:14px}
-.check{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid transparent;border-radius:13px;padding:12px;text-align:left}
-.check.on{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.45)}
-.check input{width:22px;height:22px;min-width:22px;margin:0;accent-color:var(--green)}
-.check strong{display:block;font-size:14px}.check span{display:block;color:var(--muted);font-size:11px;line-height:1.35;margin-top:2px}
-.scorebox{text-align:center}
-.ring{--score:0;width:140px;height:140px;border-radius:50%;margin:12px auto;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--score)*1%),rgba(255,255,255,.08) 0);position:relative}
-.ring:before{content:"";position:absolute;inset:12px;background:var(--card);border-radius:50%}
-.ringin{position:relative;z-index:2}.scoren{font-size:36px;font-weight:950}.scorel{color:var(--muted);font-size:11px}
-.pledge{display:flex;gap:10px;align-items:flex-start;background:rgba(244,196,48,.08);border:1px solid rgba(244,196,48,.22);padding:12px;border-radius:13px;margin:14px 0}
-.pledge input{width:22px;height:22px;min-width:22px;margin:0;accent-color:var(--gold)}
-.pledge span{font-size:12px;line-height:1.4;color:#fef3c7}
-.btn{width:100%;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:950}
-.gold{background:linear-gradient(135deg,#f4c430,#ffd966);color:#111827}
-.dark{background:#263143;color:#d8dee9}
-.danger{background:rgba(251,113,133,.14);color:#fecdd3;border:1px solid rgba(251,113,133,.3)}
-.locked{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.35);padding:13px;border-radius:14px;margin-top:12px}
-.locked strong{color:var(--green)}
-.airesult{margin-top:13px;padding:14px;border-radius:15px;background:#080d18;border:1px solid var(--line)}
-.aihead{display:flex;justify-content:space-between;gap:10px;align-items:center}.badge{padding:7px 10px;border-radius:999px;font-size:11px;font-weight:900;background:var(--card2)}
-.aibody{margin-top:11px;line-height:1.5;font-size:14px}.aibody ul{padding-left:18px}.aibody li{margin:5px 0}
-.clock{font-size:40px;font-weight:950;text-align:center;color:var(--gold);letter-spacing:-1px}
-.date{text-align:center;color:var(--muted);font-size:12px;margin-top:4px}
-.session{background:var(--card2);border-radius:14px;padding:13px;margin-top:10px}
-.sessiontop{display:flex;justify-content:space-between;gap:12px;align-items:center}.session strong{font-size:15px}.session small{color:var(--muted)}
-.progress{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:10px}.bar{height:100%;width:0;background:var(--gold)}
-.countdown{margin-top:8px;font-size:12px;color:var(--muted)}.live{color:var(--green);font-weight:900}.closed{color:var(--muted);font-weight:900}
-.calhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
-.calhead button{border:0;background:var(--card2);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px}
-.monthtitle{font-weight:950;font-size:18px;text-align:center}
-.monthstats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
-.monthstats .stat strong{font-size:17px}
-.report-card{margin-top:12px;background:#080d18;border:1px solid rgba(244,196,48,.25);border-radius:16px;padding:14px}
-.report-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.report-grade{font-size:34px;font-weight:950;color:var(--gold)}
-.report-summary{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.5}
-.weekdays,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.weekdays div{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:4px}
-.day{min-height:72px;background:var(--card2);border:1px solid transparent;border-radius:11px;padding:7px;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.day.other{opacity:.35}.day.today{border-color:var(--gold)}.day.selected{outline:2px solid var(--gold)}
-.day.win{
- background:linear-gradient(180deg,rgba(16,112,76,.78),rgba(8,73,51,.82));
- border-color:rgba(52,211,153,.72)
-}
-.day.loss{
- background:linear-gradient(180deg,rgba(143,43,57,.82),rgba(91,27,38,.86));
- border-color:rgba(251,113,133,.72)
-}
-.day.win .daynum,.day.loss .daynum{color:#fff}
-.day.win .daypnl{color:#8ff0c6!important}
-.day.loss .daypnl{color:#ffb0bc!important}
-.calendar-view.hidden,.daily-view.hidden{display:none}
-.daily-nav{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.back-btn{border:0;background:var(--card2);color:var(--text);width:44px;height:44px;border-radius:13px;font-size:23px;font-weight:900}
-.daily-heading{flex:1}
-.daily-heading strong{display:block;font-size:20px}
-.daily-heading span{color:var(--muted);font-size:12px}
-.daily-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px}
-.daily-summary .stat strong{font-size:17px}
-.daynum{font-size:11px;font-weight:900}
-.daypnl{font-size:11px;font-weight:950;margin-top:auto;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.daycount{position:absolute;bottom:5px;right:6px;color:var(--muted);font-size:9px}
-.trade-list{display:flex;flex-direction:column;gap:8px;margin-top:11px}
-.trade-row{display:grid;grid-template-columns:1fr auto;gap:10px;background:var(--card2);border-radius:12px;padding:11px}
-.trade-row small{color:var(--muted);display:block;margin-top:3px}
-.trade-actions{display:flex;gap:6px;align-items:center}.mini{border:0;border-radius:9px;padding:8px;background:#263143;color:#fff}
-.favorites-empty{color:var(--muted);text-align:center;padding:22px 10px}
-.favorite-groups{display:flex;flex-direction:column;gap:14px}
-.favorite-group h3{margin:0 0 8px;color:var(--gold);font-size:15px;text-transform:capitalize}
-.favorite-card{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:13px;margin-bottom:8px}
-.favorite-card blockquote{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:14px;line-height:1.5;color:#fff8dc}
-.favorite-card .fav-ref{color:var(--gold);font-weight:900;font-size:12px;margin-top:7px}
-.favorite-card .fav-reflection{color:var(--muted);font-size:11px;line-height:1.45;margin-top:7px}
-.favorite-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.favorite-actions button{border:0;border-radius:9px;padding:8px 10px;background:#263143;color:#fff;font-size:11px;font-weight:800}
-.favorite-note{margin-top:10px;min-height:72px;font-size:14px}
-.footer{text-align:center;color:var(--muted);font-size:10px;line-height:1.45;padding:4px 10px 14px}
-@media(max-width:430px){.tabs{grid-template-columns:repeat(3,1fr)}.monthstats{grid-template-columns:repeat(2,1fr)}.day{min-height:64px;padding:6px}.daypnl{font-size:10px}}
+textarea{min-height:96px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px}.riskbuttons{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:8px}.riskbuttons button{border:0;border-radius:11px;padding:10px 2px;font-weight:900;background:var(--card2);color:var(--text)}.riskbuttons button.active{background:var(--gold);color:#151515}
+.summary{margin-top:16px;background:#080d18;border:1px solid rgba(244,196,48,.35);border-radius:18px;padding:15px}.metric{text-align:center;padding:3px 0 10px}.metric .v{font-size:46px;color:var(--gold);font-weight:950;line-height:1}.metric .l{color:var(--muted);font-size:12px;margin-top:5px}
+.stats,.monthstats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{background:var(--card2);padding:11px 6px;border-radius:12px;text-align:center}.stat strong{display:block;font-size:18px}.stat span{color:var(--muted);font-size:10px}
+.good{color:var(--green)!important}.bad{color:var(--red)!important}.btn{width:100%;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:950}.gold{background:linear-gradient(135deg,#f4c430,#ffd966);color:#111827}.dark{background:#263143;color:#d8dee9}.danger{background:rgba(251,113,133,.14);color:#fecdd3;border:1px solid rgba(251,113,133,.3)}
+.notice{margin-top:11px;padding:11px;border-radius:12px;font-size:12px;line-height:1.4;background:rgba(96,165,250,.1);color:#bfdbfe;border:1px solid rgba(96,165,250,.22)}
+.checklist{display:flex;flex-direction:column;gap:8px;margin-top:14px}.check{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid transparent;border-radius:13px;padding:12px}.check.on{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.45)}.check input{width:22px;height:22px;min-width:22px;margin:0;accent-color:var(--green)}
+.ring{--score:0;width:140px;height:140px;border-radius:50%;margin:12px auto;display:grid;place-items:center;background:conic-gradient(var(--gold) calc(var(--score)*1%),rgba(255,255,255,.08) 0);position:relative}.ring:before{content:"";position:absolute;inset:12px;background:var(--card);border-radius:50%}.ringin{position:relative;z-index:2;text-align:center}.scoren{font-size:36px;font-weight:950}.scorel{color:var(--muted);font-size:11px}
+.calhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}.calhead button{border:0;background:var(--card2);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px}.monthtitle{font-weight:950;font-size:18px;text-align:center}
+.weekdays,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.weekdays div{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:4px}
+.day{min-height:72px;background:var(--card2);border:1px solid transparent;border-radius:11px;padding:7px;position:relative;overflow:hidden;display:flex;flex-direction:column;color:var(--text);text-align:left}.day.other{opacity:.35}.day.today{border-color:var(--gold)}.day.selected{outline:2px solid var(--gold)}
+.day.win{background:linear-gradient(180deg,rgba(16,112,76,.78),rgba(8,73,51,.82));border-color:rgba(52,211,153,.72)}.day.loss{background:linear-gradient(180deg,rgba(143,43,57,.82),rgba(91,27,38,.86));border-color:rgba(251,113,133,.72)}.day.flat{background:#273247}
+.daynum{font-size:11px;font-weight:900}.daypnl{font-size:11px;font-weight:950;margin-top:auto;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.daycount{position:absolute;bottom:5px;right:6px;color:var(--muted);font-size:9px}
+.daily-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px}.trade-list{display:flex;flex-direction:column;gap:8px;margin-top:11px}.trade-row{display:grid;grid-template-columns:1fr auto;gap:10px;background:var(--card2);border-radius:12px;padding:11px;border-left:4px solid #64748b}.trade-row.win{border-left-color:var(--green)}.trade-row.loss{border-left-color:var(--red)}.trade-row small{color:var(--muted);display:block;margin-top:3px}.mini{border:0;border-radius:9px;padding:8px;background:#263143;color:#fff}
+.clock{font-size:40px;font-weight:950;text-align:center;color:var(--gold)}.session{background:var(--card2);border-radius:14px;padding:13px;margin-top:10px}.footer{text-align:center;color:var(--muted);font-size:10px;padding:8px}
+@media(max-width:430px){.grid2{grid-template-columns:1fr}.day{min-height:64px;padding:6px}.daypnl{font-size:10px}}
 </style>
 </head>
 <body>
 <main class="app">
-<header class="hero">
-<div class="logo">C</div><h1>Calcufaith</h1>
-<div class="tag">Calculate the Risk. Trust the Process.</div>
-<div class="verse">“Moreover it is required in stewards, that a man be found faithful.” — 1 Corinthians 4:2 (KJV)</div>
-</header>
-
-<div id="scriptureCard" class="scripture-card">
-<div class="scripture-label">Scripture of the Moment</div>
-<div id="scriptureText" class="scripture-text"></div>
-<div id="scriptureRef" class="scripture-ref"></div>
-<div id="scriptureReflection" class="scripture-reflection"></div>
-<div class="scripture-actions">
-<button id="favoriteScripture">♡ Favorite</button>
-<button id="shareScripture">Share</button>
-<button id="readChapter">Read Chapter</button>
-<button id="nextScripture">Next Scripture</button>
-</div>
-</div>
+<header class="hero"><div class="logo">C</div><h1>Calcufaith V8</h1><div class="tag">Calculate the Risk. Trust the Process.</div><div class="verse">“Moreover it is required in stewards, that a man be found faithful.” — 1 Corinthians 4:2 (KJV)</div></header>
 
 <nav class="tabs">
-<button class="tab active" data-tab="trade">Trade</button>
-<button class="tab" data-tab="steward">Stewardship</button>
-<button class="tab" data-tab="coach">AI Coach</button>
-<button class="tab" data-tab="calendarPanel">Calendar</button>
-<button class="tab" data-tab="sessions">Kill Zones</button>
-<button class="tab" data-tab="lock">Discipline Lock</button>
-<button class="tab" data-tab="myScriptures">My Scriptures</button>
+<button class="tab active" data-tab="trade">Trade</button><button class="tab" data-tab="steward">Stewardship</button><button class="tab" data-tab="coach">AI Coach</button><button class="tab" data-tab="calendarPanel">Calendar</button><button class="tab" data-tab="sessions">Kill Zones</button><button class="tab" data-tab="lock">Discipline</button>
 </nav>
 
-<section id="trade" class="panel active">
-<div class="card">
-<h2 class="title">Trade Calculator</h2>
-<div class="sub">Enter your plan and Calcufaith calculates position size, risk, projected profit, and reward.</div>
+<section id="trade" class="panel active"><div class="card">
+<h2 class="title">Trade Calculator</h2><div class="sub">Calculate position size, risk, projected profit, and reward.</div>
 <label>Account Balance ($)</label><input id="balance" type="number" inputmode="decimal" value="427">
 <label>Risk Percentage</label><input id="risk" type="number" inputmode="decimal" value="3" step="0.1">
 <div class="riskbuttons"><button data-risk="1">1%</button><button data-risk="2">2%</button><button data-risk="3" class="active">3%</button><button data-risk="5">5%</button></div>
 <label>Instrument</label><input id="instrument" value="XAUUSD">
 <label>Direction</label><select id="direction"><option value="buy">Buy</option><option value="sell">Sell</option></select>
-<div class="grid2">
-<div><label>Entry Price</label><input id="entry" type="number" inputmode="decimal" step="0.01" value="4050"></div>
-<div><label>Stop-Loss Price</label><input id="sl" type="number" inputmode="decimal" step="0.01" value="4048"></div>
-</div>
+<div class="grid2"><div><label>Entry Price</label><input id="entry" type="number" inputmode="decimal" step="0.01" value="4050"></div><div><label>Stop-Loss Price</label><input id="sl" type="number" inputmode="decimal" step="0.01" value="4048"></div></div>
 <label>Take-Profit Price</label><input id="tp" type="number" inputmode="decimal" step="0.01" value="4055">
-<div class="summary">
-<div class="metric"><div class="v" id="lot">0.06</div><div class="l">Recommended Lot Size</div></div>
-<div class="stats">
-<div class="stat"><strong id="maxrisk">$12.81</strong><span>Maximum Risk</span></div>
-<div class="stat"><strong id="actualrisk">$12.00</strong><span>Actual Risk</span></div>
-<div class="stat"><strong id="profit" class="good">$30.00</strong><span>Projected Profit</span></div>
-<div class="stat"><strong id="rr">1 : 2.50</strong><span>Risk-to-Reward</span></div>
-<div class="stat"><strong id="sd">$2.00</strong><span>Stop Distance</span></div>
-<div class="stat"><strong id="td">$5.00</strong><span>TP Distance</span></div>
-</div>
-</div>
-<div id="warn" class="notice"></div>
-<details><summary>Broker Settings</summary>
-<label>Broker Name</label><input id="broker" value="Coinexx">
-<div class="grid2"><div><label>Minimum Lot</label><input id="minlot" type="number" value="0.01" step="0.001"></div><div><label>Lot Increment</label><input id="increment" type="number" value="0.01" step="0.001"></div></div>
-<label>Value per $1 Gold Move at 1.00 Lot</label><input id="contract" type="number" value="100">
-</details>
-</div>
-</section>
+<div class="summary"><div class="metric"><div class="v" id="lot">0.06</div><div class="l">Recommended Lot Size</div></div><div class="stats">
+<div class="stat"><strong id="maxrisk">$0.00</strong><span>Maximum Risk</span></div><div class="stat"><strong id="actualrisk">$0.00</strong><span>Actual Risk</span></div><div class="stat"><strong id="profit">$0.00</strong><span>Projected Profit</span></div><div class="stat"><strong id="rr">—</strong><span>Risk-to-Reward</span></div></div></div>
+</div></section>
 
-<section id="steward" class="panel">
-<div class="card scorebox">
-<h2 class="title">Stewardship Checklist</h2><div class="sub">80% qualifies the setup. Core risk items must also be completed.</div>
-<div class="ring" id="ring"><div class="ringin"><div class="scoren" id="score">0%</div><div class="scorel">Stewardship Score</div></div></div>
-<div id="status" style="font-weight:900">Preserve Your Capital</div>
+<section id="steward" class="panel"><div class="card">
+<h2 class="title">Stewardship Checklist</h2><div class="ring" id="ring"><div class="ringin"><div class="scoren" id="score">0%</div><div class="scorel">Stewardship Score</div></div></div>
 <div class="checklist">
-<label class="check"><input type="checkbox" data-core="1"><span><strong>Higher-Time-Frame Bias Confirmed</strong><span>4H or 1H agrees with the setup.</span></span></label>
-<label class="check"><input type="checkbox"><span><strong>Key Support or Resistance Confirmed</strong><span>The setup is forming at a meaningful level.</span></span></label>
-<label class="check"><input type="checkbox"><span><strong>Liquidity Sweep Completed</strong><span>Relevant liquidity has been taken.</span></span></label>
-<label class="check"><input type="checkbox" data-core="1"><span><strong>CHOCH or BOS Confirmed</strong><span>Structure supports the direction.</span></span></label>
-<label class="check"><input type="checkbox"><span><strong>Retest Confirmed</strong><span>The level has been tested and held.</span></span></label>
-<label class="check"><input type="checkbox"><span><strong>Engulfing or Rejection Signal</strong><span>Your entry signal has appeared.</span></span></label>
-<label class="check"><input type="checkbox" data-core="1"><span><strong>Stop Loss Placed</strong><span>The invalidation point is defined.</span></span></label>
-<label class="check"><input type="checkbox" data-core="1"><span><strong>Risk Is Within My Plan</strong><span>The dollar and percentage risk are acceptable.</span></span></label>
-<label class="check"><input type="checkbox" data-core="1"><span><strong>Minimum Risk-to-Reward Met</strong><span>The projected reward justifies the risk.</span></span></label>
-<label class="check"><input type="checkbox"><span><strong>No Conflicting High-Impact News</strong><span>Upcoming news has been considered.</span></span></label>
-<label class="check"><input type="checkbox" data-core="1"><span><strong>I Am Trading My Plan, Not My Emotions</strong><span>No revenge trading, FOMO, or overtrading.</span></span></label>
-</div>
-<label class="pledge"><input id="pledge" type="checkbox"><span>I have followed my trading plan, accepted my risk, and will honor my stop loss without emotion.</span></label>
-<button id="execute" class="btn dark" disabled>COMPLETE 80% TO QUALIFY</button>
-</div>
-</section>
+<label class="check"><input type="checkbox"><span><strong>Higher-Time-Frame Bias Confirmed</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Key Support or Resistance Confirmed</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Liquidity Sweep Completed</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>CHOCH or BOS Confirmed</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Retest Confirmed</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Engulfing or Rejection Signal</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Stop Loss Placed</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Risk Is Within My Plan</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>Minimum Risk-to-Reward Met</strong></span></label>
+<label class="check"><input type="checkbox"><span><strong>I Am Trading My Plan, Not My Emotions</strong></span></label>
+</div></div></section>
 
-<section id="coach" class="panel">
-<div class="card">
-<h2 class="title">Calcufaith AI Coach</h2><div class="sub">Offline rule-based analysis using your trade plan, Stewardship Score, risk, reward, and kill-zone status.</div>
-<label>Trade Notes</label><textarea id="notes" placeholder="Example: Gold swept London low, CHOCH confirmed, waiting for retest and engulfing candle."></textarea>
-<button id="analyze" class="btn gold">ANALYZE MY TRADE</button>
-<div class="airesult"><div class="aihead"><strong>Calcufaith AI</strong><span class="badge" id="aibadge">Ready</span></div><div class="aibody" id="aibody">Complete your information, then tap Analyze My Trade.</div></div>
-</div>
-</section>
+<section id="coach" class="panel"><div class="card"><h2 class="title">Calcufaith AI Coach</h2><label>Trade Notes</label><textarea id="coachNotes" placeholder="Example: Gold swept London low, CHOCH confirmed, waiting for retest and engulfing candle."></textarea><button id="analyze" class="btn gold">ANALYZE MY TRADE</button><div id="coachResult" class="notice">Complete your setup and tap Analyze.</div></div></section>
 
-<section id="calendarPanel" class="panel">
-<div id="calendarView" class="calendar-view">
-<div class="card">
+<section id="calendarPanel" class="panel"><div class="card">
 <div class="calhead"><button id="prevMonth">‹</button><div class="monthtitle" id="monthTitle"></div><button id="nextMonth">›</button></div>
-<div class="monthstats">
-<div class="stat"><strong id="monthEnding">$0.00</strong><span>Month Ending P&L</span></div>
-<div class="stat"><strong id="monthWinRate">0%</strong><span>Win Rate</span></div>
-<div class="stat"><strong id="winningTrades">0</strong><span>Winning Trades</span></div>
-<div class="stat"><strong id="losingTrades">0</strong><span>Losing Trades</span></div>
-<div class="stat"><strong id="greenDays">0</strong><span>Green Days</span></div>
-<div class="stat"><strong id="redDays">0</strong><span>Red Days</span></div>
-<div class="stat"><strong id="bestDay">$0.00</strong><span>Best Day</span></div>
-<div class="stat"><strong id="worstDay">$0.00</strong><span>Worst Day</span></div>
-<div class="stat"><strong id="averageWin">$0.00</strong><span>Average Win</span></div>
-<div class="stat"><strong id="averageLoss">$0.00</strong><span>Average Loss</span></div>
+<div class="monthstats"><div class="stat"><strong id="monthNet">$0.00</strong><span>Monthly P&L</span></div><div class="stat"><strong id="monthWinRate">0%</strong><span>Win Rate</span></div><div class="stat"><strong id="greenDays">0</strong><span>Green Days</span></div><div class="stat"><strong id="redDays">0</strong><span>Red Days</span></div></div>
+<div class="weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div><div class="calendar" id="calendar"></div>
 </div>
-<div class="report-card">
-<div class="report-head">
-<div><strong>Monthly Report Card</strong><br><span class="hint">Based on saved trades and stewardship scores</span></div>
-<div class="report-grade" id="reportGrade">—</div>
-</div>
-<div class="report-summary" id="reportSummary">Save trades this month to generate your report.</div>
-</div>
-<div class="weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
-<div class="calendar" id="calendar"></div>
-</div>
-</div>
-
-<div id="dailyView" class="daily-view hidden">
-<div class="card">
-<div class="daily-nav">
-<button id="backToCalendar" class="back-btn" aria-label="Back to calendar">‹</button>
-<div class="daily-heading">
-<strong id="dailyTitle">Daily Journal</strong>
-<span>Trades and performance for this date</span>
-</div>
-</div>
-<div class="daily-summary">
-<div class="stat"><strong id="dailyNet">$0.00</strong><span>Daily Net</span></div>
-<div class="stat"><strong id="dailyTrades">0</strong><span>Trades</span></div>
-<div class="stat"><strong id="dailyWinRate">0%</strong><span>Win Rate</span></div>
-</div>
-<h2 class="title">Add Trade</h2>
-<div class="sub">Record one or more trades for this date.</div>
+<div class="card"><h2 class="title">Add Trade</h2>
 <label>Date</label><input id="tradeDate" type="date">
 <div class="grid2"><div><label>Instrument</label><input id="journalInstrument" value="XAUUSD"></div><div><label>Result</label><select id="resultType"><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div></div>
-<div class="grid2"><div><label>Profit / Loss ($)</label><input id="pnl" type="number" inputmode="decimal" step="0.01" placeholder="Example: 125 or -60"></div><div><label>Stewardship Score</label><input id="journalScore" type="number" min="0" max="100" value="80"></div></div>
+<div class="grid2"><div><label>Profit / Loss ($)</label><input id="pnl" type="text" inputmode="decimal" autocomplete="off" placeholder="125.00 or -169.09"><span class="hint">Choosing Loss automatically saves the number as negative—even when the iPhone keyboard has no minus key.</span></div><div><label>Stewardship Score</label><input id="journalScore" type="number" min="0" max="100" value="80"></div></div>
 <label>Notes</label><textarea id="journalNotes" placeholder="What happened? Did you honor the plan?"></textarea>
 <label style="display:flex;gap:10px;align-items:center"><input id="honoredLock" type="checkbox" style="width:22px;height:22px"> Honored Discipline Lock</label>
 <button id="saveTrade" class="btn gold">SAVE TRADE</button>
+<div class="notice"><strong>V8 fix:</strong> Losses are stored as negative values, subtract from monthly totals, and turn the calendar day red when the daily net is below $0.</div>
+<div class="daily-summary" style="margin-top:12px"><div class="stat"><strong id="dailyNet">$0.00</strong><span>Selected Day Net</span></div><div class="stat"><strong id="dailyTrades">0</strong><span>Trades</span></div><div class="stat"><strong id="dailyWinRate">0%</strong><span>Win Rate</span></div></div>
 <div class="trade-list" id="tradeList"></div>
-</div>
-</section>
+</div></section>
 
-<section id="sessions" class="panel">
-<div class="card">
-<h2 class="title">Kill Zone Clock</h2><div class="sub">Central Time.</div>
-<div class="clock" id="clock">--:--:--</div><div class="date" id="date"></div>
-<div class="session"><div class="sessiontop"><div><strong>New York Kill Zone</strong><br><small>7:00 AM–10:00 AM CT</small></div><span id="nystatus" class="closed">Closed</span></div><div class="progress"><div class="bar" id="nybar"></div></div><div class="countdown" id="nycount"></div></div>
-<div class="session"><div class="sessiontop"><div><strong>London Kill Zone</strong><br><small>2:00 AM–3:30 AM CT</small></div><span id="ldnstatus" class="closed">Closed</span></div><div class="progress"><div class="bar" id="ldnbar"></div></div><div class="countdown" id="ldncount"></div></div>
-<div class="session"><div class="sessiontop"><div><strong>New York Volume Window</strong><br><small>8:30 AM CT</small></div><span id="volstatus" class="closed">Upcoming</span></div><div class="countdown" id="volcount"></div></div>
-</div>
-</section>
-
-<section id="lock" class="panel">
-<div class="card">
-<h2 class="title">Discipline Lock</h2>
-<div class="sub">Save the original plan before entering. The app records changes so you can identify emotional patterns later.</div>
-<div id="lockSummary" class="airesult">No active locked trade.</div>
-<button id="lockTrade" class="btn gold">LOCK CURRENT TRADE PLAN</button>
-<div id="lockControls" style="display:none;margin-top:12px">
-<label>Why are you changing the plan?</label>
-<select id="changeReason">
-<option>Market structure changed</option><option>Moving stop because I am scared</option><option>Entering early</option><option>Chasing price</option><option>Revenge trading</option><option>Other</option>
-</select>
-<label>Change Notes</label><textarea id="changeNotes"></textarea>
-<button id="recordChange" class="btn danger">RECORD PLAN CHANGE</button>
-<button id="completeLock" class="btn dark" style="margin-top:8px">COMPLETE / CLOSE LOCKED TRADE</button>
-</div>
-<div class="trade-list" id="changeHistory"></div>
-</div>
-</section>
-
-<section id="myScriptures" class="panel">
-<div class="card">
-<h2 class="title">My Scriptures</h2>
-<div class="sub">Your favorited Scriptures are saved on this device and organized by category.</div>
-<div id="favoriteScriptureList"></div>
-</div>
-</section>
-
-<div class="footer">Calcufaith stores information locally on this device. It does not place trades or connect to your broker.</div>
+<section id="sessions" class="panel"><div class="card"><h2 class="title">Kill Zone Clock — Central Time</h2><div class="clock" id="clock">--:--:--</div><div class="session"><strong>London:</strong> 2:00–3:30 AM CT</div><div class="session"><strong>New York:</strong> 7:00–10:00 AM CT</div><div class="session"><strong>Volume Window:</strong> 8:30 AM CT</div></div></section>
+<section id="lock" class="panel"><div class="card"><h2 class="title">Discipline Lock</h2><p>Maximum 3 trades per day. One open trade at a time. Do not chase the initial break. Wait for your confirmation.</p><div class="notice">Higher-timeframe bias → liquidity → CHOCH/BOS → retest → engulfing or rejection confirmation.</div></div></section>
+<div class="footer">Calcufaith V8 stores information locally on this device. It does not place trades or connect to your broker.</div>
 </main>
 
 <script>
 const $=id=>document.getElementById(id);
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
- document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
- document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
- t.classList.add('active');$(t.dataset.tab).classList.add('active');
- if(t.dataset.tab==='myScriptures')renderFavoriteScriptures();
- showNextScripture()
-});
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));t.classList.add('active');$(t.dataset.tab).classList.add('active')});
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number(n)||0);
+const todayKey=()=>{const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)};
+let journal=JSON.parse(localStorage.getItem('calcufaithJournalV8')||localStorage.getItem('calcufaithJournal')||'[]');
+journal=journal.map(t=>({...t,pnl:Number(t.pnl)||0}));
+let viewMonth=new Date();viewMonth.setDate(1);let selectedDate=todayKey();$('tradeDate').value=selectedDate;
 
-const f={balance:$('balance'),risk:$('risk'),instrument:$('instrument'),direction:$('direction'),entry:$('entry'),sl:$('sl'),tp:$('tp'),broker:$('broker'),minlot:$('minlot'),increment:$('increment'),contract:$('contract'),notes:$('notes')};
-const checks=[...document.querySelectorAll('.check input')],pledge=$('pledge');
-let calcState={rr:0,profit:0,lot:0,valid:false,riskPct:0};
-let journal=JSON.parse(localStorage.getItem('calcufaithJournal')||'[]');
-let lockedTrade=JSON.parse(localStorage.getItem('calcufaithLockedTrade')||'null');
-let changeLog=JSON.parse(localStorage.getItem('calcufaithChangeLog')||'[]');
-let viewMonth=new Date();viewMonth.setDate(1);
-
-const money=v=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(Number.isFinite(v)?v:0);
-const dec=s=>String(s).includes('.')?String(s).split('.')[1].length:0;
-const floorStep=(v,s)=>Math.floor((v+1e-10)/s)*s;
-const localDate=d=>{const x=new Date(d);x.setMinutes(x.getMinutes()-x.getTimezoneOffset());return x.toISOString().slice(0,10)};
-
-function scoreData(){const n=checks.filter(x=>x.checked).length;return{score:Math.round(n/checks.length*100),core:checks.filter(x=>x.dataset.core).every(x=>x.checked)}}
 function calc(){
- const b=+f.balance.value||0,r=+f.risk.value||0,e=+f.entry.value||0,s=+f.sl.value||0,t=+f.tp.value||0,c=+f.contract.value||100,inc=+f.increment.value||.01,min=+f.minlot.value||.01,buy=f.direction.value==='buy';
- const sd=buy?e-s:s-e,td=buy?t-e:e-t,max=b*r/100,raw=sd>0?max/(sd*c):0;
- let lot=floorStep(raw,inc);if(lot>0&&lot<min)lot=0;
- const ar=lot*Math.max(sd,0)*c,p=lot*td*c,rr=ar>0?p/ar:0;
- $('lot').textContent=lot.toFixed(dec(inc));$('maxrisk').textContent=money(max);$('actualrisk').textContent=money(ar);$('profit').textContent=money(p);$('profit').className=p>=0?'good':'bad';$('rr').textContent=rr>0?`1 : ${rr.toFixed(2)}`:'—';$('sd').textContent=money(Math.max(sd,0));$('td').textContent=money(Math.max(td,0));
- const w=$('warn');w.className='notice';w.textContent='';
- if(r>5){w.className='notice show';w.textContent='Caution: risk above 5% may cause significant drawdowns.'}
- else if(sd<=0){w.className='notice show';w.textContent=buy?'For a Buy, stop-loss must be below entry.':'For a Sell, stop-loss must be above entry.'}
- else if(td<=0){w.className='notice show';w.textContent=buy?'For a Buy, TP must be above entry.':'For a Sell, TP must be below entry.'}
- calcState={rr,profit:p,lot,valid:sd>0&&td>0&&lot>0,riskPct:r,actualRisk:ar};
- document.querySelectorAll('[data-risk]').forEach(x=>x.classList.toggle('active',+x.dataset.risk===r));saveMain()
+ const b=+$('balance').value||0,r=+$('risk').value||0,e=+$('entry').value||0,s=+$('sl').value||0,t=+$('tp').value||0,buy=$('direction').value==='buy';
+ const sd=buy?e-s:s-e,td=buy?t-e:e-t,max=b*r/100,lot=sd>0?Math.floor((max/(sd*100))*100)/100:0,actual=lot*Math.max(sd,0)*100,profit=lot*Math.max(td,0)*100,rr=actual>0?profit/actual:0;
+ $('lot').textContent=lot.toFixed(2);$('maxrisk').textContent=money(max);$('actualrisk').textContent=money(actual);$('profit').textContent=money(profit);$('profit').className=profit>=0?'good':'bad';$('rr').textContent=rr>0?'1 : '+rr.toFixed(2):'—';
 }
-document.querySelectorAll('[data-risk]').forEach(x=>x.onclick=()=>{f.risk.value=x.dataset.risk;calc()});
-Object.values(f).forEach(x=>x.addEventListener('input',calc));
+['balance','risk','entry','sl','tp','direction'].forEach(id=>$(id).addEventListener('input',calc));
+document.querySelectorAll('[data-risk]').forEach(b=>b.onclick=()=>{$('risk').value=b.dataset.risk;document.querySelectorAll('[data-risk]').forEach(x=>x.classList.remove('active'));b.classList.add('active');calc()});calc();
 
-function updateScore(){
- const {score,core}=scoreData();checks.forEach(x=>x.closest('.check').classList.toggle('on',x.checked));$('ring').style.setProperty('--score',score);$('score').textContent=score+'%';
- let text='Preserve Your Capital',color='var(--red)';if(score>=90){text='Elite Setup';color='var(--green)'}else if(score>=80){text='Qualified Setup';color='var(--gold)'}else if(score>=60){text='Wait for More Confirmation';color='var(--orange)'}
- $('status').textContent=text;$('status').style.color=color;
- const q=score>=80&&core&&pledge.checked,btn=$('execute');btn.disabled=!q;btn.className='btn '+(q?'gold':'dark');btn.textContent=q?'ENTER WITH DISCIPLINE':score>=80&&!core?'COMPLETE CORE RISK ITEMS':score>=80&&!pledge.checked?'ACCEPT THE STEWARDSHIP PLEDGE':'COMPLETE 80% TO QUALIFY';saveMain()
+const checks=[...document.querySelectorAll('.check input')];
+function score(){const n=checks.filter(x=>x.checked).length,p=Math.round(n/checks.length*100);$('score').textContent=p+'%';$('ring').style.setProperty('--score',p);checks.forEach(x=>x.closest('.check').classList.toggle('on',x.checked));return p}
+checks.forEach(x=>x.onchange=score);
+
+$('analyze').onclick=()=>{const s=score(),rr=parseFloat(($('rr').textContent.split(':')[1]||0));let v='WAIT';if(s>=80&&rr>=2)v='TRADE QUALIFIED';$('coachResult').innerHTML='<strong>'+v+'</strong><br>Stewardship Score: '+s+'%. Risk-to-reward: '+(rr||0).toFixed(2)+'. '+(v==='WAIT'?'Wait for the missing confirmation rather than forcing the trade.':'Honor the stop, entry, and planned target.')};
+
+function normalizeAmount(raw,result){
+ const cleaned=String(raw).trim().replace(/[$,\s]/g,'').replace(/[−–—]/g,'-');
+ const parsed=parseFloat(cleaned);
+ if(!Number.isFinite(parsed)) return null;
+ const n=Math.abs(parsed);
+ if(result==='loss') return -n;
+ if(result==='breakeven') return 0;
+ return n;
 }
-checks.forEach(x=>x.onchange=updateScore);pledge.onchange=updateScore;
+$('pnl').addEventListener('input',e=>{e.target.value=e.target.value.replace(/[^0-9.\-−–—,$\s]/g,'')});
+$('resultType').addEventListener('change',()=>{const n=normalizeAmount($('pnl').value,$('resultType').value);if(n!==null&&$('pnl').value.trim())$('pnl').value=n.toFixed(2)});
 
-function ctParts(){const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false,weekday:'long',month:'long',day:'numeric',year:'numeric'}).formatToParts(new Date());const o={};parts.forEach(p=>o[p.type]=p.value);return o}
-function minutesCT(){const p=ctParts();return(+p.hour%24)*60+(+p.minute)}
-function fmtMin(m){m=Math.max(0,Math.round(m));const h=Math.floor(m/60),n=m%60;return h?`${h}h ${n}m`:`${n}m`}
-function sessionUpdate(start,end,statusId,barId,countId){const now=minutesCT(),status=$(statusId),bar=$(barId),count=$(countId);if(now>=start&&now<end){status.textContent='LIVE';status.className='live';bar.style.width=((now-start)/(end-start)*100)+'%';count.textContent=`Closes in ${fmtMin(end-now)}`}else{status.textContent='Closed';status.className='closed';bar.style.width='0%';let until=now<start?start-now:1440-now+start;count.textContent=`Opens in ${fmtMin(until)}`}}
-function clockUpdate(){const p=ctParts();$('clock').textContent=`${p.hour}:${p.minute}:${p.second}`;$('date').textContent=`${p.weekday}, ${p.month} ${p.day}, ${p.year} — Central Time`;sessionUpdate(420,600,'nystatus','nybar','nycount');sessionUpdate(120,210,'ldnstatus','ldnbar','ldncount');const now=minutesCT(),target=510;let d=now<=target?target-now:1440-now+target;$('volstatus').textContent=Math.abs(now-target)<1?'LIVE':'Upcoming';$('volstatus').className=Math.abs(now-target)<1?'live':'closed';$('volcount').textContent=d===0?'8:30 AM volume window is active.':`Next 8:30 AM window in ${fmtMin(d)}`}
-setInterval(clockUpdate,1000);clockUpdate();
-
-$('analyze').onclick=()=>{
- const {score,core}=scoreData(),ny=$('nystatus').textContent==='LIVE',ldn=$('ldnstatus').textContent==='LIVE';let verdict='WAIT',color='var(--orange)',reasons=[],actions=[];
- if(!calcState.valid)reasons.push('Trade prices or calculated lot size are not valid.');if(calcState.riskPct>5)reasons.push(`Risk is ${calcState.riskPct.toFixed(1)}%, above the 5% caution level.`);if(calcState.rr>0&&calcState.rr<2)reasons.push(`Risk-to-reward is only 1:${calcState.rr.toFixed(2)}.`);if(score<80)reasons.push(`Stewardship Score is ${score}%, below 80%.`);if(!core)reasons.push('Core risk confirmations are incomplete.');if(!pledge.checked)reasons.push('Stewardship Pledge has not been accepted.');reasons.push(ny?'New York Kill Zone is live.':ldn?'London Kill Zone is live.':'Neither defined kill zone is live.');
- const qualified=calcState.valid&&score>=80&&core&&pledge.checked&&calcState.rr>=2&&calcState.riskPct<=5;if(qualified){verdict=score>=90?'ELITE SETUP':'TRADE QUALIFIED';color='var(--green)';actions.push('The setup meets the current Calcufaith rules. Honor the stop and planned entry.')}else{actions.push('Wait for the missing confirmation rather than forcing the trade.')}
- $('aibadge').textContent=verdict;$('aibadge').style.color=color;$('aibody').innerHTML=`<strong style="color:${color}">${verdict}</strong><ul>${reasons.map(x=>`<li>${x}</li>`).join('')}</ul><strong>Coach Response</strong><ul>${actions.map(x=>`<li>${x}</li>`).join('')}</ul>${f.notes.value.trim()?`<strong>Your Notes</strong><p>${f.notes.value.replace(/[<>]/g,'')}</p>`:''}`
-};
-
-function renderCalendar(){
- const year=viewMonth.getFullYear(),month=viewMonth.getMonth();$('monthTitle').textContent=viewMonth.toLocaleDateString('en-US',{month:'long',year:'numeric'});
- const first=new Date(year,month,1),start=new Date(year,month,1-first.getDay());const cal=$('calendar');cal.innerHTML='';
- const monthTrades=journal.filter(t=>{const d=new Date(t.date+'T12:00:00');return d.getFullYear()===year&&d.getMonth()===month});
- const net=monthTrades.reduce((a,t)=>a+(+t.pnl||0),0);
- const winning=monthTrades.filter(t=>(+t.pnl||0)>0);
- const losing=monthTrades.filter(t=>(+t.pnl||0)<0);
- const wins=winning.length,losses=losing.length;
- const daily={};monthTrades.forEach(t=>{daily[t.date]=(daily[t.date]||0)+(+t.pnl||0)});
- const dailyValues=Object.values(daily);
- const best=dailyValues.length?Math.max(...dailyValues):0;
- const worst=dailyValues.length?Math.min(...dailyValues):0;
- const avgWin=wins?winning.reduce((a,t)=>a+(+t.pnl||0),0)/wins:0;
- const avgLoss=losses?losing.reduce((a,t)=>a+(+t.pnl||0),0)/losses:0;
- const winRate=(wins+losses)?Math.round(wins/(wins+losses)*100):0;
- const avgScore=monthTrades.length?Math.round(monthTrades.reduce((a,t)=>a+(+t.score||0),0)/monthTrades.length):0;
-
- $('monthEnding').textContent=(net>=0?'+':'')+money(net);
- $('monthEnding').className=net>=0?'good':'bad';
- $('monthWinRate').textContent=winRate+'%';
- $('winningTrades').textContent=wins;
- $('losingTrades').textContent=losses;
- $('greenDays').textContent=dailyValues.filter(v=>v>0).length;
- $('redDays').textContent=dailyValues.filter(v=>v<0).length;
- $('bestDay').textContent=(best>0?'+':'')+money(best);
- $('bestDay').className=best>=0?'good':'bad';
- $('worstDay').textContent=money(worst);
- $('worstDay').className=worst<0?'bad':'good';
- $('averageWin').textContent=(avgWin>0?'+':'')+money(avgWin);
- $('averageWin').className=avgWin>=0?'good':'bad';
- $('averageLoss').textContent=money(avgLoss);
- $('averageLoss').className=avgLoss<0?'bad':'good';
-
- let grade='—';
- if(monthTrades.length){
-   if(net>0&&winRate>=80&&avgScore>=90)grade='A+';
-   else if(net>0&&winRate>=70&&avgScore>=80)grade='A';
-   else if(net>0&&winRate>=60)grade='B';
-   else if(net>=0)grade='C';
-   else grade='D';
- }
- $('reportGrade').textContent=grade;
-
- let summary='Save trades this month to generate your report.';
- if(monthTrades.length){
-   const parts=[];
-   parts.push(`You finished the month ${net>=0?'profitable':'at a loss'} with ${wins} winning trade${wins===1?'':'s'} and ${losses} losing trade${losses===1?'':'s'}.`);
-   parts.push(`Your win rate was ${winRate}% and your average Stewardship Score was ${avgScore}%.`);
-   if(best>0)parts.push(`Your best trading day produced ${money(best)}.`);
-   if(worst<0)parts.push(`Your worst trading day was ${money(worst)}.`);
-   summary=parts.join(' ');
- }
- $('reportSummary').textContent=summary;
- for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=localDate(d),items=journal.filter(t=>t.date===key),pnl=items.reduce((a,t)=>a+(+t.pnl||0),0);const cell=document.createElement('div');let dayClass='day'+(d.getMonth()!==month?' other':'')+(key===localDate(new Date())?' today':'')+(key===$('tradeDate').value?' selected':'');if(items.length)dayClass+=pnl>=0?' win':' loss';cell.className=dayClass;const shortPnl=`${pnl>=0?'+':'-'}$${Math.abs(pnl).toLocaleString('en-US',{maximumFractionDigits:0})}`;cell.innerHTML=`<div class="daynum">${d.getDate()}</div>${items.length?`<div class="daypnl ${pnl>=0?'good':'bad'}">${shortPnl}</div><div class="daycount">${items.length}T</div>`:''}`;cell.onclick=()=>openDay(key);cal.appendChild(cell)}
+function tradesFor(date){return journal.filter(t=>t.date===date)}
+function netFor(date){return tradesFor(date).reduce((a,t)=>a+(Number(t.pnl)||0),0)}
+function render(){
+ $('monthTitle').textContent=viewMonth.toLocaleDateString('en-US',{month:'long',year:'numeric'});
+ const y=viewMonth.getFullYear(),m=viewMonth.getMonth(),first=new Date(y,m,1),start=new Date(y,m,1-first.getDay()),cal=$('calendar');cal.innerHTML='';
+ for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-'),ts=tradesFor(key),net=netFor(key);const b=document.createElement('button');b.className='day'+(d.getMonth()!==m?' other':'')+(key===todayKey()?' today':'')+(key===selectedDate?' selected':'')+(ts.length?(net>0?' win':net<0?' loss':' flat'):'');b.innerHTML='<span class="daynum">'+d.getDate()+'</span>'+(ts.length?'<span class="daypnl">'+money(net)+'</span><span class="daycount">'+ts.length+' trade'+(ts.length===1?'':'s')+'</span>':'');b.onclick=()=>{selectedDate=key;$('tradeDate').value=key;render()};cal.appendChild(b)}
+ const mt=journal.filter(t=>{const d=new Date(t.date+'T12:00:00');return d.getFullYear()===y&&d.getMonth()===m}),net=mt.reduce((a,t)=>a+(Number(t.pnl)||0),0),wins=mt.filter(t=>Number(t.pnl)>0).length,losses=mt.filter(t=>Number(t.pnl)<0).length;
+ const dayMap={};mt.forEach(t=>dayMap[t.date]=(dayMap[t.date]||0)+(Number(t.pnl)||0));
+ $('monthNet').textContent=money(net);$('monthNet').className=net>=0?'good':'bad';$('monthWinRate').textContent=(wins+losses?Math.round(wins/(wins+losses)*100):0)+'%';$('greenDays').textContent=Object.values(dayMap).filter(n=>n>0).length;$('redDays').textContent=Object.values(dayMap).filter(n=>n<0).length;
+ const dt=tradesFor(selectedDate),dn=netFor(selectedDate),dw=dt.filter(t=>Number(t.pnl)>0).length,dl=dt.filter(t=>Number(t.pnl)<0).length;$('dailyNet').textContent=money(dn);$('dailyNet').className=dn>=0?'good':'bad';$('dailyTrades').textContent=dt.length;$('dailyWinRate').textContent=(dw+dl?Math.round(dw/(dw+dl)*100):0)+'%';
+ $('tradeList').innerHTML=dt.length?dt.map(t=>'<div class="trade-row '+(t.pnl>0?'win':t.pnl<0?'loss':'')+'"><div><strong>'+escapeHtml(t.instrument)+' — '+money(t.pnl)+'</strong><small>'+escapeHtml(t.notes||'No notes')+' • Score '+t.score+'%</small></div><button class="mini" onclick="removeTrade(\''+t.id+'\')">Delete</button></div>').join(''):'<div class="notice">No trades saved for this date.</div>';
 }
-$('prevMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()-1);renderCalendar()};$('nextMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()+1);renderCalendar()};
-
-function renderTrades(){
- const date=$('tradeDate').value,list=$('tradeList');
- const dayTrades=journal.filter(t=>t.date===date);
- const net=dayTrades.reduce((a,t)=>a+(+t.pnl||0),0);
- const wins=dayTrades.filter(t=>(+t.pnl||0)>0).length;
- const losses=dayTrades.filter(t=>(+t.pnl||0)<0).length;
-
- $('dailyTitle').textContent=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
- $('dailyNet').textContent=(net>=0?'+':'')+money(net);
- $('dailyNet').className=net>=0?'good':'bad';
- $('dailyTrades').textContent=dayTrades.length;
- $('dailyWinRate').textContent=(wins+losses)?Math.round(wins/(wins+losses)*100)+'%':'0%';
-
- list.innerHTML='';
- dayTrades.forEach(t=>{
-   const row=document.createElement('div');
-   row.className='trade-row';
-   row.innerHTML=`<div><strong>${t.instrument} — ${t.result}</strong><small>${money(+t.pnl||0)} • Stewardship ${t.score}% • ${t.honored?'Lock honored':'Lock not honored'}</small><small>${t.notes||''}</small></div><div class="trade-actions"><button class="mini" data-id="${t.id}">Delete</button></div>`;
-   list.appendChild(row)
- });
- list.querySelectorAll('button').forEach(b=>b.onclick=()=>{
-   journal=journal.filter(t=>String(t.id)!==b.dataset.id);
-   localStorage.setItem('calcufaithJournal',JSON.stringify(journal));
-   renderCalendar();
-   renderTrades()
- })
-}
-
-function openDay(date){
- $('tradeDate').value=date;
- $('calendarView').classList.add('hidden');
- $('dailyView').classList.remove('hidden');
- renderTrades();
- window.scrollTo({top:0,behavior:'smooth'})
-}
-
-$('backToCalendar').onclick=()=>{
- $('dailyView').classList.add('hidden');
- $('calendarView').classList.remove('hidden');
- renderCalendar();
- window.scrollTo({top:0,behavior:'smooth'})
-};
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 $('saveTrade').onclick=()=>{
- const date=$('tradeDate').value,pnl=+$('pnl').value;if(!date||!Number.isFinite(pnl)){alert('Enter a date and profit/loss amount.');return}
- journal.push({id:Date.now(),date,instrument:$('journalInstrument').value||'XAUUSD',result:$('resultType').value,pnl,score:+$('journalScore').value||0,notes:$('journalNotes').value,honored:$('honoredLock').checked});
- localStorage.setItem('calcufaithJournal',JSON.stringify(journal));$('pnl').value='';$('journalNotes').value='';renderCalendar();renderTrades()
+ const result=$('resultType').value,amount=normalizeAmount($('pnl').value,result);
+ if(amount===null){alert('Enter a valid P&L amount, such as 125.00 or -169.09.');return}
+ const date=$('tradeDate').value||selectedDate;
+ journal.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),date,instrument:$('journalInstrument').value.trim()||'Trade',result,pnl:amount,score:Math.max(0,Math.min(100,Number($('journalScore').value)||0)),notes:$('journalNotes').value.trim(),honored:$('honoredLock').checked});
+ localStorage.setItem('calcufaithJournalV8',JSON.stringify(journal));selectedDate=date;$('pnl').value='';$('journalNotes').value='';render();
 };
-
-function renderLock(){
- const s=$('lockSummary'),controls=$('lockControls');if(!lockedTrade){s.innerHTML='No active locked trade.';controls.style.display='none';return}
- s.innerHTML=`<div class="locked"><strong>Trade Plan Locked</strong><br>${lockedTrade.instrument} ${lockedTrade.direction.toUpperCase()}<br>Entry ${lockedTrade.entry} • SL ${lockedTrade.sl} • TP ${lockedTrade.tp}<br>Lot ${lockedTrade.lot} • Risk ${money(lockedTrade.risk)} • Score ${lockedTrade.score}%<br><small>Locked ${new Date(lockedTrade.lockedAt).toLocaleString()}</small></div>`;controls.style.display='block'
-}
-$('lockTrade').onclick=()=>{
- const {score,core}=scoreData();if(!calcState.valid){alert('Complete a valid trade plan first.');return}if(score<80||!core||!pledge.checked){alert('Complete the Stewardship requirements before locking the trade.');return}
- lockedTrade={instrument:f.instrument.value,direction:f.direction.value,entry:+f.entry.value,sl:+f.sl.value,tp:+f.tp.value,lot:calcState.lot,risk:calcState.actualRisk,score,lockedAt:new Date().toISOString()};localStorage.setItem('calcufaithLockedTrade',JSON.stringify(lockedTrade));renderLock()
-};
-$('recordChange').onclick=()=>{if(!lockedTrade)return;changeLog.unshift({id:Date.now(),tradeLockedAt:lockedTrade.lockedAt,reason:$('changeReason').value,notes:$('changeNotes').value,time:new Date().toISOString()});localStorage.setItem('calcufaithChangeLog',JSON.stringify(changeLog));$('changeNotes').value='';renderChanges()};
-$('completeLock').onclick=()=>{lockedTrade=null;localStorage.removeItem('calcufaithLockedTrade');renderLock()};
-function renderChanges(){const c=$('changeHistory');c.innerHTML='';changeLog.slice(0,20).forEach(x=>{const r=document.createElement('div');r.className='trade-row';r.innerHTML=`<div><strong>${x.reason}</strong><small>${new Date(x.time).toLocaleString()}</small><small>${x.notes||''}</small></div>`;c.appendChild(r)})}
-
-
-const scriptureLibrary=[{"c": "faith", "t": "Now faith is the substance of things hoped for, the evidence of things not seen.", "r": "Hebrews 11:1", "x": "Faith holds steady before the result becomes visible."}, {"c": "faith", "t": "For we walk by faith, not by sight.", "r": "2 Corinthians 5:7", "x": "Do not let one candle replace the plan you already trusted."}, {"c": "faith", "t": "So then faith cometh by hearing, and hearing by the word of God.", "r": "Romans 10:17", "x": "What you repeatedly hear will shape how you respond under pressure."}, {"c": "faith", "t": "Have faith in God.", "r": "Mark 11:22", "x": "Confidence begins with God, not with the market."}, {"c": "faith", "t": "If thou canst believe, all things are possible to him that believeth.", "r": "Mark 9:23", "x": "Possibility grows where faith and disciplined action meet."}, {"c": "faith", "t": "According to your faith be it unto you.", "r": "Matthew 9:29", "x": "Let faith strengthen obedience, not encourage recklessness."}, {"c": "faith", "t": "The just shall live by faith.", "r": "Romans 1:17", "x": "Faith is a daily way of living, not a single emotional moment."}, {"c": "faith", "t": "For with God nothing shall be impossible.", "r": "Luke 1:37", "x": "Do not confuse a difficult season with a final outcome."}, {"c": "faith", "t": "What time I am afraid, I will trust in thee.", "r": "Psalm 56:3", "x": "Fear can be present without becoming your decision-maker."}, {"c": "faith", "t": "Trust ye in the LORD for ever: for in the LORD JEHOVAH is everlasting strength.", "r": "Isaiah 26:4", "x": "Lasting strength comes from a foundation deeper than today’s result."}, {"c": "stewardship", "t": "Moreover it is required in stewards, that a man be found faithful.", "r": "1 Corinthians 4:2", "x": "Your first responsibility is faithfulness, not excitement."}, {"c": "stewardship", "t": "He that is faithful in that which is least is faithful also in much.", "r": "Luke 16:10", "x": "Small disciplined choices prepare you for greater responsibility."}, {"c": "stewardship", "t": "For unto whomsoever much is given, of him shall be much required.", "r": "Luke 12:48", "x": "Growth increases responsibility as well as opportunity."}, {"c": "stewardship", "t": "Well done, thou good and faithful servant: thou hast been faithful over a few things.", "r": "Matthew 25:21", "x": "Faithfulness with a small account matters."}, {"c": "stewardship", "t": "The earth is the LORD'S, and the fulness thereof.", "r": "Psalm 24:1", "x": "Treat resources as something entrusted, not something owned without accountability."}, {"c": "stewardship", "t": "Every man according as he purposeth in his heart, so let him give; not grudgingly, or of necessity.", "r": "2 Corinthians 9:7", "x": "Purpose should guide money decisions, not pressure."}, {"c": "stewardship", "t": "Honour the LORD with thy substance, and with the firstfruits of all thine increase.", "r": "Proverbs 3:9", "x": "Increase should deepen gratitude and responsibility."}, {"c": "stewardship", "t": "The blessing of the LORD, it maketh rich, and he addeth no sorrow with it.", "r": "Proverbs 10:22", "x": "Healthy increase should not require abandoning peace or integrity."}, {"c": "stewardship", "t": "A faithful man shall abound with blessings: but he that maketh haste to be rich shall not be innocent.", "r": "Proverbs 28:20", "x": "Do not let urgency to grow become permission to overtrade."}, {"c": "stewardship", "t": "There is treasure to be desired and oil in the dwelling of the wise.", "r": "Proverbs 21:20", "x": "Wise people preserve resources instead of consuming every gain."}, {"c": "wisdom", "t": "If any of you lack wisdom, let him ask of God.", "r": "James 1:5", "x": "Pause long enough to ask for wisdom before acting."}, {"c": "wisdom", "t": "Trust in the LORD with all thine heart; and lean not unto thine own understanding.", "r": "Proverbs 3:5", "x": "Your understanding matters, but it should never become your only foundation."}, {"c": "wisdom", "t": "In all thy ways acknowledge him, and he shall direct thy paths.", "r": "Proverbs 3:6", "x": "Invite God into the process, not only the outcome."}, {"c": "wisdom", "t": "Wisdom is the principal thing; therefore get wisdom.", "r": "Proverbs 4:7", "x": "Skill grows when learning remains more important than proving yourself."}, {"c": "wisdom", "t": "A prudent man foreseeth the evil, and hideth himself.", "r": "Proverbs 22:3", "x": "A stop loss is not fear; it is foresight."}, {"c": "wisdom", "t": "Where no counsel is, the people fall: but in the multitude of counsellors there is safety.", "r": "Proverbs 11:14", "x": "Reviewing your process protects you from blind spots."}, {"c": "wisdom", "t": "The simple believeth every word: but the prudent man looketh well to his going.", "r": "Proverbs 14:15", "x": "Verify the setup instead of believing every move."}, {"c": "wisdom", "t": "The wisdom of the prudent is to understand his way.", "r": "Proverbs 14:8", "x": "Know why you are entering before you enter."}, {"c": "wisdom", "t": "Ponder the path of thy feet, and let all thy ways be established.", "r": "Proverbs 4:26", "x": "A clear plan makes decisive execution possible."}, {"c": "wisdom", "t": "He that answereth a matter before he heareth it, it is folly and shame unto him.", "r": "Proverbs 18:13", "x": "Wait for the market to finish speaking before responding."}, {"c": "discipline", "t": "He that is slow to anger is better than the mighty; and he that ruleth his spirit than he that taketh a city.", "r": "Proverbs 16:32", "x": "Self-control is a greater victory than one winning trade."}, {"c": "discipline", "t": "But I keep under my body, and bring it into subjection.", "r": "1 Corinthians 9:27", "x": "Discipline means your impulses do not control your execution."}, {"c": "discipline", "t": "For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind.", "r": "2 Timothy 1:7", "x": "A sound mind can wait, calculate, and act without panic."}, {"c": "discipline", "t": "He that hath no rule over his own spirit is like a city that is broken down, and without walls.", "r": "Proverbs 25:28", "x": "Rules protect your account the way walls protect a city."}, {"c": "discipline", "t": "Let all things be done decently and in order.", "r": "1 Corinthians 14:40", "x": "Order creates consistency when emotion is loud."}, {"c": "discipline", "t": "Be sober, be vigilant.", "r": "1 Peter 5:8", "x": "Stay clear-minded and attentive when volatility increases."}, {"c": "discipline", "t": "Every man that striveth for the mastery is temperate in all things.", "r": "1 Corinthians 9:25", "x": "Mastery requires restraint as much as action."}, {"c": "discipline", "t": "Make no provision for the flesh, to fulfil the lusts thereof.", "r": "Romans 13:14", "x": "Do not create room for revenge trading or impulsive entries."}, {"c": "discipline", "t": "Let your moderation be known unto all men.", "r": "Philippians 4:5", "x": "Measured risk is a mark of maturity."}, {"c": "discipline", "t": "A man's discretion deferreth his anger.", "r": "Proverbs 19:11", "x": "A pause can prevent an emotional decision."}, {"c": "patience", "t": "But let patience have her perfect work, that ye may be perfect and entire, wanting nothing.", "r": "James 1:4", "x": "Waiting for confirmation is part of completing the setup."}, {"c": "patience", "t": "Wait on the LORD: be of good courage, and he shall strengthen thine heart.", "r": "Psalm 27:14", "x": "Waiting is active strength, not weakness."}, {"c": "patience", "t": "But they that wait upon the LORD shall renew their strength.", "r": "Isaiah 40:31", "x": "Patience restores clarity before the next decision."}, {"c": "patience", "t": "To every thing there is a season, and a time to every purpose under the heaven.", "r": "Ecclesiastes 3:1", "x": "Not every moment is an entry moment."}, {"c": "patience", "t": "Rest in the LORD, and wait patiently for him.", "r": "Psalm 37:7", "x": "Do not force movement when your confirmation is absent."}, {"c": "patience", "t": "The LORD is good unto them that wait for him.", "r": "Lamentations 3:25", "x": "Patience protects you from acting before clarity arrives."}, {"c": "patience", "t": "In your patience possess ye your souls.", "r": "Luke 21:19", "x": "Patience keeps your emotions from possessing you."}, {"c": "patience", "t": "He that believeth shall not make haste.", "r": "Isaiah 28:16", "x": "Confidence does not need to chase price."}, {"c": "patience", "t": "Better is the end of a thing than the beginning thereof: and the patient in spirit is better than the proud in spirit.", "r": "Ecclesiastes 7:8", "x": "Judge the process over time, not by the excitement of the beginning."}, {"c": "patience", "t": "Be ye also patient; stablish your hearts.", "r": "James 5:8", "x": "A settled heart makes better decisions."}, {"c": "courage", "t": "Be strong and of a good courage; be not afraid.", "r": "Joshua 1:9", "x": "Courage follows preparation and obedience."}, {"c": "courage", "t": "The LORD is my light and my salvation; whom shall I fear?", "r": "Psalm 27:1", "x": "Fear does not have to dictate your next move."}, {"c": "courage", "t": "Be strong and of a good courage, fear not, nor be afraid of them.", "r": "Deuteronomy 31:6", "x": "You can remain steady even when conditions look intimidating."}, {"c": "courage", "t": "The wicked flee when no man pursueth: but the righteous are bold as a lion.", "r": "Proverbs 28:1", "x": "Boldness should come from clarity, not impulsiveness."}, {"c": "courage", "t": "What shall we then say to these things? If God be for us, who can be against us?", "r": "Romans 8:31", "x": "Do not let one setback define your confidence."}, {"c": "courage", "t": "I can do all things through Christ which strengtheneth me.", "r": "Philippians 4:13", "x": "Strength includes the ability to wait and walk away."}, {"c": "courage", "t": "Be of good courage, and he shall strengthen your heart.", "r": "Psalm 31:24", "x": "Courage grows when your heart is anchored."}, {"c": "courage", "t": "Fear thou not; for I am with thee.", "r": "Isaiah 41:10", "x": "Presence is stronger than pressure."}, {"c": "courage", "t": "The LORD is on my side; I will not fear.", "r": "Psalm 118:6", "x": "Do not let temporary uncertainty become permanent fear."}, {"c": "courage", "t": "Watch ye, stand fast in the faith, quit you like men, be strong.", "r": "1 Corinthians 16:13", "x": "Strength means remaining faithful to the plan."}, {"c": "peace", "t": "Thou wilt keep him in perfect peace, whose mind is stayed on thee.", "r": "Isaiah 26:3", "x": "A focused mind is less vulnerable to market noise."}, {"c": "peace", "t": "And the peace of God, which passeth all understanding, shall keep your hearts and minds.", "r": "Philippians 4:7", "x": "Protect your mind before protecting the trade."}, {"c": "peace", "t": "Peace I leave with you, my peace I give unto you.", "r": "John 14:27", "x": "Do not measure peace by whether a trade wins."}, {"c": "peace", "t": "Be still, and know that I am God.", "r": "Psalm 46:10", "x": "Stillness can reveal what urgency hides."}, {"c": "peace", "t": "Great peace have they which love thy law: and nothing shall offend them.", "r": "Psalm 119:165", "x": "Rules create stability when outcomes disappoint."}, {"c": "peace", "t": "Let the peace of God rule in your hearts.", "r": "Colossians 3:15", "x": "Let peace serve as a guardrail against emotional execution."}, {"c": "peace", "t": "The LORD will give strength unto his people; the LORD will bless his people with peace.", "r": "Psalm 29:11", "x": "Strength and peace can coexist."}, {"c": "peace", "t": "In the multitude of my thoughts within me thy comforts delight my soul.", "r": "Psalm 94:19", "x": "When thoughts multiply, return to what settles you."}, {"c": "peace", "t": "Casting all your care upon him; for he careth for you.", "r": "1 Peter 5:7", "x": "You do not have to carry the emotional weight of every outcome."}, {"c": "peace", "t": "Now the Lord of peace himself give you peace always by all means.", "r": "2 Thessalonians 3:16", "x": "Peace should remain available in every market condition."}, {"c": "diligence", "t": "The thoughts of the diligent tend only to plenteousness.", "r": "Proverbs 21:5", "x": "Consistent execution compounds over time."}, {"c": "diligence", "t": "Seest thou a man diligent in his business? he shall stand before kings.", "r": "Proverbs 22:29", "x": "Excellence grows through repeated attention to detail."}, {"c": "diligence", "t": "Whatsoever thy hand findeth to do, do it with thy might.", "r": "Ecclesiastes 9:10", "x": "Bring full attention to the process in front of you."}, {"c": "diligence", "t": "And whatsoever ye do, do it heartily, as to the Lord.", "r": "Colossians 3:23", "x": "Let excellence be worship, not performance."}, {"c": "diligence", "t": "The hand of the diligent shall bear rule.", "r": "Proverbs 12:24", "x": "Diligence eventually produces control and consistency."}, {"c": "diligence", "t": "The soul of the diligent shall be made fat.", "r": "Proverbs 13:4", "x": "Desire becomes fruitful when matched with disciplined work."}, {"c": "diligence", "t": "Not slothful in business; fervent in spirit; serving the Lord.", "r": "Romans 12:11", "x": "Stay engaged without becoming frantic."}, {"c": "diligence", "t": "Give diligence to make your calling and election sure.", "r": "2 Peter 1:10", "x": "Clarity is strengthened through consistent practice."}, {"c": "diligence", "t": "Keep thy heart with all diligence; for out of it are the issues of life.", "r": "Proverbs 4:23", "x": "Guard your inner condition before managing the outer trade."}, {"c": "diligence", "t": "The desire accomplished is sweet to the soul.", "r": "Proverbs 13:19", "x": "Completion is sweeter when the process was disciplined."}, {"c": "prosperity", "t": "But thou shalt remember the LORD thy God: for it is he that giveth thee power to get wealth.", "r": "Deuteronomy 8:18", "x": "Capacity for increase should always produce humility."}, {"c": "prosperity", "t": "This book of the law shall not depart out of thy mouth; but thou shalt meditate therein day and night.", "r": "Joshua 1:8", "x": "Sustainable prosperity begins with alignment and obedience."}, {"c": "prosperity", "t": "He shall be like a tree planted by the rivers of water, that bringeth forth his fruit in his season.", "r": "Psalm 1:3", "x": "Fruitfulness has seasons; consistency keeps you planted."}, {"c": "prosperity", "t": "The liberal soul shall be made fat: and he that watereth shall be watered also himself.", "r": "Proverbs 11:25", "x": "Increase is healthiest when generosity grows with it."}, {"c": "prosperity", "t": "Beloved, I wish above all things that thou mayest prosper and be in health.", "r": "3 John 2", "x": "True prosperity includes the condition of your whole life."}, {"c": "prosperity", "t": "The LORD shall increase you more and more, you and your children.", "r": "Psalm 115:14", "x": "Increase can carry purpose beyond one person."}, {"c": "prosperity", "t": "And let the beauty of the LORD our God be upon us: and establish thou the work of our hands.", "r": "Psalm 90:17", "x": "Ask God to establish the work, not merely accelerate it."}, {"c": "prosperity", "t": "The LORD shall open unto thee his good treasure.", "r": "Deuteronomy 28:12", "x": "Opportunity is best handled by prepared hands."}, {"c": "prosperity", "t": "Commit thy works unto the LORD, and thy thoughts shall be established.", "r": "Proverbs 16:3", "x": "Commit the process before asking for the result."}, {"c": "prosperity", "t": "Seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.", "r": "Matthew 6:33", "x": "Keep priorities in order while pursuing increase."}, {"c": "hope", "t": "For I know the thoughts that I think toward you, saith the LORD, thoughts of peace, and not of evil.", "r": "Jeremiah 29:11", "x": "One difficult day does not cancel a hopeful future."}, {"c": "hope", "t": "Weeping may endure for a night, but joy cometh in the morning.", "r": "Psalm 30:5", "x": "A losing session is not the end of the story."}, {"c": "hope", "t": "Why art thou cast down, O my soul? hope thou in God.", "r": "Psalm 42:11", "x": "Speak hope to yourself before emotion becomes direction."}, {"c": "hope", "t": "Now the God of hope fill you with all joy and peace in believing.", "r": "Romans 15:13", "x": "Hope produces peace while the outcome is still developing."}, {"c": "hope", "t": "It is of the LORD'S mercies that we are not consumed, because his compassions fail not.", "r": "Lamentations 3:22", "x": "A new day brings new mercy and a fresh process."}, {"c": "hope", "t": "They are new every morning: great is thy faithfulness.", "r": "Lamentations 3:23", "x": "Yesterday’s mistake does not have to become today’s pattern."}];
-let scriptureOrder=[];
-let scripturePosition=-1;
-let currentScripture=null;
-let favoriteScriptures=JSON.parse(localStorage.getItem('calcufaithFavoriteScriptures')||'[]');
-
-function resetScriptureOrder(){
- scriptureOrder=scriptureLibrary.map((_,i)=>i);
- for(let i=scriptureOrder.length-1;i>0;i--){
-   const j=Math.floor(Math.random()*(i+1));
-   [scriptureOrder[i],scriptureOrder[j]]=[scriptureOrder[j],scriptureOrder[i]]
- }
- scripturePosition=-1
-}
-
-function showNextScripture(){
- if(!scriptureOrder.length||scripturePosition>=scriptureOrder.length-1)resetScriptureOrder();
- scripturePosition++;
- const next=scriptureLibrary[scriptureOrder[scripturePosition]];
- const card=$('scriptureCard');
- card.classList.add('fade');
- setTimeout(()=>{
-   currentScripture=next;
-   $('scriptureText').textContent='“'+next.t+'”';
-   $('scriptureRef').textContent='— '+next.r+' (KJV)';
-   $('scriptureReflection').textContent=next.x;
-   const saved=favoriteScriptures.some(v=>v.r===next.r&&v.t===next.t);
-   $('favoriteScripture').textContent=saved?'♥ Favorited':'♡ Favorite';
-   card.classList.remove('fade')
- },180)
-}
-
-$('nextScripture').onclick=showNextScripture;
-$('favoriteScripture').onclick=()=>{
- if(!currentScripture)return;
- const idx=favoriteScriptures.findIndex(v=>v.r===currentScripture.r&&v.t===currentScripture.t);
- if(idx>=0)favoriteScriptures.splice(idx,1);
- else favoriteScriptures.push({...currentScripture,note:''});
- localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
- $('favoriteScripture').textContent=idx>=0?'♡ Favorite':'♥ Favorited';
- renderFavoriteScriptures()
-};
-
-$('shareScripture').onclick=async()=>{
- if(!currentScripture)return;
- const shareText=`“${currentScripture.t}”\n— ${currentScripture.r} (KJV)\n\nReflection: ${currentScripture.x}\n\nShared from Calcufaith`;
- try{
-   if(navigator.share){
-     await navigator.share({
-       title:`${currentScripture.r} — KJV`,
-       text:shareText
-     });
-   }else if(navigator.clipboard){
-     await navigator.clipboard.writeText(shareText);
-     const old=$('shareScripture').textContent;
-     $('shareScripture').textContent='Copied';
-     setTimeout(()=>$('shareScripture').textContent=old,1500);
-   }else{
-     prompt('Copy this Scripture:',shareText);
-   }
- }catch(err){
-   // User may cancel the share sheet; no alert is needed.
- }
-};
-
-function chapterUrl(reference){
- const match=reference.match(/^(.+?)\s+(\d+)(?::.*)?$/);
- if(!match)return 'https://www.biblegateway.com/';
- const book=encodeURIComponent(match[1].trim());
- const chapter=encodeURIComponent(match[2]);
- return `https://www.biblegateway.com/passage/?search=${book}%20${chapter}&version=KJV`;
-}
-
-$('readChapter').onclick=()=>{
- if(!currentScripture)return;
- const url=chapterUrl(currentScripture.r);
- window.open(url,'_blank','noopener,noreferrer');
-};
-
-
-function shareFavoriteScripture(item){
- const shareText=`“${item.t}”\n— ${item.r} (KJV)\n\nReflection: ${item.x||''}${item.note?`\n\nMy note: ${item.note}`:''}\n\nShared from Calcufaith`;
- if(navigator.share){
-   navigator.share({title:`${item.r} — KJV`,text:shareText}).catch(()=>{});
- }else if(navigator.clipboard){
-   navigator.clipboard.writeText(shareText);
- }else{
-   prompt('Copy this Scripture:',shareText);
- }
-}
-
-function renderFavoriteScriptures(){
- const root=$('favoriteScriptureList');
- if(!root)return;
- if(!favoriteScriptures.length){
-   root.innerHTML='<div class="favorites-empty">You have not favorited any Scriptures yet.</div>';
-   return;
- }
-
- const grouped={};
- favoriteScriptures.forEach((item,i)=>{
-   const cat=item.c||'favorites';
-   if(!grouped[cat])grouped[cat]=[];
-   grouped[cat].push({...item,_index:i});
- });
-
- root.innerHTML='<div class="favorite-groups">'+Object.entries(grouped).map(([cat,items])=>`
-   <div class="favorite-group">
-     <h3>${cat}</h3>
-     ${items.map(item=>`
-       <div class="favorite-card">
-         <blockquote>“${item.t}”</blockquote>
-         <div class="fav-ref">— ${item.r} (KJV)</div>
-         <div class="fav-reflection">${item.x||''}</div>
-         <textarea class="favorite-note" data-fav-note="${item._index}" placeholder="Add a personal note...">${item.note||''}</textarea>
-         <div class="favorite-actions">
-           <button data-fav-share="${item._index}">Share</button>
-           <button data-fav-chapter="${item._index}">Read Chapter</button>
-           <button data-fav-remove="${item._index}">Remove</button>
-         </div>
-       </div>
-     `).join('')}
-   </div>
- `).join('')+'</div>';
-
- root.querySelectorAll('[data-fav-note]').forEach(el=>el.oninput=()=>{
-   const i=+el.dataset.favNote;
-   favoriteScriptures[i].note=el.value;
-   localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
- });
-
- root.querySelectorAll('[data-fav-share]').forEach(btn=>btn.onclick=()=>{
-   shareFavoriteScripture(favoriteScriptures[+btn.dataset.favShare]);
- });
-
- root.querySelectorAll('[data-fav-chapter]').forEach(btn=>btn.onclick=()=>{
-   const item=favoriteScriptures[+btn.dataset.favChapter];
-   window.open(chapterUrl(item.r),'_blank','noopener,noreferrer');
- });
-
- root.querySelectorAll('[data-fav-remove]').forEach(btn=>btn.onclick=()=>{
-   favoriteScriptures.splice(+btn.dataset.favRemove,1);
-   localStorage.setItem('calcufaithFavoriteScriptures',JSON.stringify(favoriteScriptures));
-   renderFavoriteScriptures();
-   if(currentScripture){
-     const saved=favoriteScriptures.some(v=>v.r===currentScripture.r&&v.t===currentScripture.t);
-     $('favoriteScripture').textContent=saved?'♥ Favorited':'♡ Favorite';
-   }
- });
-}
-
-function saveMain(){const d={};Object.entries(f).forEach(([k,v])=>d[k]=v.value);d.checks=checks.map(x=>x.checked);d.pledge=pledge.checked;localStorage.setItem('calcufaithV4',JSON.stringify(d))}
-function loadMain(){try{const d=JSON.parse(localStorage.getItem('calcufaithV4'))||JSON.parse(localStorage.getItem('calcufaithV3'))||JSON.parse(localStorage.getItem('calcufaithV2'));if(!d)return;Object.entries(f).forEach(([k,v])=>{if(d[k]!==undefined)v.value=d[k]});if(Array.isArray(d.checks))checks.forEach((x,i)=>x.checked=!!d.checks[i]);pledge.checked=!!d.pledge}catch(e){}}
-loadMain();calc();updateScore();$('tradeDate').value=localDate(new Date());renderCalendar();renderTrades();renderLock();renderChanges();renderFavoriteScriptures();resetScriptureOrder();showNextScripture();
-if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js'));
+window.removeTrade=id=>{journal=journal.filter(t=>t.id!==id);localStorage.setItem('calcufaithJournalV8',JSON.stringify(journal));render()};
+$('tradeDate').onchange=e=>{selectedDate=e.target.value;const d=new Date(selectedDate+'T12:00:00');viewMonth=new Date(d.getFullYear(),d.getMonth(),1);render()};
+$('prevMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()-1);render()};$('nextMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()+1);render()};
+function clock(){const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',hour:'numeric',minute:'2-digit',second:'2-digit'}).format(new Date());$('clock').textContent=p}setInterval(clock,1000);clock();render();
 </script>
 </body>
 </html>
