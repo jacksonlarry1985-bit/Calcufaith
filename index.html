@@ -91,7 +91,25 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 .weekdays div{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:4px}
 .day{min-height:72px;background:var(--card2);border:1px solid transparent;border-radius:11px;padding:7px;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .day.other{opacity:.35}.day.today{border-color:var(--gold)}.day.selected{outline:2px solid var(--gold)}
-.day.win{background:rgba(52,211,153,.10)}.day.loss{background:rgba(251,113,133,.10)}
+.day.win{
+ background:linear-gradient(180deg,rgba(16,112,76,.78),rgba(8,73,51,.82));
+ border-color:rgba(52,211,153,.72)
+}
+.day.loss{
+ background:linear-gradient(180deg,rgba(143,43,57,.82),rgba(91,27,38,.86));
+ border-color:rgba(251,113,133,.72)
+}
+.day.win .daynum,.day.loss .daynum{color:#fff}
+.day.win .daypnl{color:#8ff0c6!important}
+.day.loss .daypnl{color:#ffb0bc!important}
+.calendar-view.hidden,.daily-view.hidden{display:none}
+.daily-nav{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.back-btn{border:0;background:var(--card2);color:var(--text);width:44px;height:44px;border-radius:13px;font-size:23px;font-weight:900}
+.daily-heading{flex:1}
+.daily-heading strong{display:block;font-size:20px}
+.daily-heading span{color:var(--muted);font-size:12px}
+.daily-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px}
+.daily-summary .stat strong{font-size:17px}
 .daynum{font-size:11px;font-weight:900}
 .daypnl{font-size:11px;font-weight:950;margin-top:auto;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .daycount{position:absolute;bottom:5px;right:6px;color:var(--muted);font-size:9px}
@@ -187,6 +205,7 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 </section>
 
 <section id="calendarPanel" class="panel">
+<div id="calendarView" class="calendar-view">
 <div class="card">
 <div class="calhead"><button id="prevMonth">‹</button><div class="monthtitle" id="monthTitle"></div><button id="nextMonth">›</button></div>
 <div class="monthstats">
@@ -211,10 +230,24 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 <div class="weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
 <div class="calendar" id="calendar"></div>
 </div>
+</div>
 
+<div id="dailyView" class="daily-view hidden">
 <div class="card">
-<h2 class="title">Daily P&L Entry</h2>
-<div class="sub">Tap a date above, then record one or more trades for that day.</div>
+<div class="daily-nav">
+<button id="backToCalendar" class="back-btn" aria-label="Back to calendar">‹</button>
+<div class="daily-heading">
+<strong id="dailyTitle">Daily Journal</strong>
+<span>Trades and performance for this date</span>
+</div>
+</div>
+<div class="daily-summary">
+<div class="stat"><strong id="dailyNet">$0.00</strong><span>Daily Net</span></div>
+<div class="stat"><strong id="dailyTrades">0</strong><span>Trades</span></div>
+<div class="stat"><strong id="dailyWinRate">0%</strong><span>Win Rate</span></div>
+</div>
+<h2 class="title">Add Trade</h2>
+<div class="sub">Record one or more trades for this date.</div>
 <label>Date</label><input id="tradeDate" type="date">
 <div class="grid2"><div><label>Instrument</label><input id="journalInstrument" value="XAUUSD"></div><div><label>Result</label><select id="resultType"><option value="win">Win</option><option value="loss">Loss</option><option value="breakeven">Breakeven</option></select></div></div>
 <div class="grid2"><div><label>Profit / Loss ($)</label><input id="pnl" type="number" inputmode="decimal" step="0.01" placeholder="Example: 125 or -60"></div><div><label>Stewardship Score</label><input id="journalScore" type="number" min="0" max="100" value="80"></div></div>
@@ -370,13 +403,52 @@ function renderCalendar(){
    summary=parts.join(' ');
  }
  $('reportSummary').textContent=summary;
- for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=localDate(d),items=journal.filter(t=>t.date===key),pnl=items.reduce((a,t)=>a+(+t.pnl||0),0);const cell=document.createElement('div');let dayClass='day'+(d.getMonth()!==month?' other':'')+(key===localDate(new Date())?' today':'')+(key===$('tradeDate').value?' selected':'');if(items.length)dayClass+=pnl>=0?' win':' loss';cell.className=dayClass;const shortPnl=`${pnl>=0?'+':'-'}$${Math.abs(pnl).toLocaleString('en-US',{maximumFractionDigits:0})}`;cell.innerHTML=`<div class="daynum">${d.getDate()}</div>${items.length?`<div class="daypnl ${pnl>=0?'good':'bad'}">${shortPnl}</div><div class="daycount">${items.length}T</div>`:''}`;cell.onclick=()=>{$('tradeDate').value=key;renderCalendar();renderTrades()};cal.appendChild(cell)}
+ for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=localDate(d),items=journal.filter(t=>t.date===key),pnl=items.reduce((a,t)=>a+(+t.pnl||0),0);const cell=document.createElement('div');let dayClass='day'+(d.getMonth()!==month?' other':'')+(key===localDate(new Date())?' today':'')+(key===$('tradeDate').value?' selected':'');if(items.length)dayClass+=pnl>=0?' win':' loss';cell.className=dayClass;const shortPnl=`${pnl>=0?'+':'-'}$${Math.abs(pnl).toLocaleString('en-US',{maximumFractionDigits:0})}`;cell.innerHTML=`<div class="daynum">${d.getDate()}</div>${items.length?`<div class="daypnl ${pnl>=0?'good':'bad'}">${shortPnl}</div><div class="daycount">${items.length}T</div>`:''}`;cell.onclick=()=>openDay(key);cal.appendChild(cell)}
 }
 $('prevMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()-1);renderCalendar()};$('nextMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()+1);renderCalendar()};
 
 function renderTrades(){
- const date=$('tradeDate').value,list=$('tradeList');list.innerHTML='';journal.filter(t=>t.date===date).forEach(t=>{const row=document.createElement('div');row.className='trade-row';row.innerHTML=`<div><strong>${t.instrument} — ${t.result}</strong><small>${money(+t.pnl||0)} • Stewardship ${t.score}% • ${t.honored?'Lock honored':'Lock not honored'}</small><small>${t.notes||''}</small></div><div class="trade-actions"><button class="mini" data-id="${t.id}">Delete</button></div>`;list.appendChild(row)});list.querySelectorAll('button').forEach(b=>b.onclick=()=>{journal=journal.filter(t=>String(t.id)!==b.dataset.id);localStorage.setItem('calcufaithJournal',JSON.stringify(journal));renderCalendar();renderTrades()})
+ const date=$('tradeDate').value,list=$('tradeList');
+ const dayTrades=journal.filter(t=>t.date===date);
+ const net=dayTrades.reduce((a,t)=>a+(+t.pnl||0),0);
+ const wins=dayTrades.filter(t=>(+t.pnl||0)>0).length;
+ const losses=dayTrades.filter(t=>(+t.pnl||0)<0).length;
+
+ $('dailyTitle').textContent=new Date(date+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+ $('dailyNet').textContent=(net>=0?'+':'')+money(net);
+ $('dailyNet').className=net>=0?'good':'bad';
+ $('dailyTrades').textContent=dayTrades.length;
+ $('dailyWinRate').textContent=(wins+losses)?Math.round(wins/(wins+losses)*100)+'%':'0%';
+
+ list.innerHTML='';
+ dayTrades.forEach(t=>{
+   const row=document.createElement('div');
+   row.className='trade-row';
+   row.innerHTML=`<div><strong>${t.instrument} — ${t.result}</strong><small>${money(+t.pnl||0)} • Stewardship ${t.score}% • ${t.honored?'Lock honored':'Lock not honored'}</small><small>${t.notes||''}</small></div><div class="trade-actions"><button class="mini" data-id="${t.id}">Delete</button></div>`;
+   list.appendChild(row)
+ });
+ list.querySelectorAll('button').forEach(b=>b.onclick=()=>{
+   journal=journal.filter(t=>String(t.id)!==b.dataset.id);
+   localStorage.setItem('calcufaithJournal',JSON.stringify(journal));
+   renderCalendar();
+   renderTrades()
+ })
 }
+
+function openDay(date){
+ $('tradeDate').value=date;
+ $('calendarView').classList.add('hidden');
+ $('dailyView').classList.remove('hidden');
+ renderTrades();
+ window.scrollTo({top:0,behavior:'smooth'})
+}
+
+$('backToCalendar').onclick=()=>{
+ $('dailyView').classList.add('hidden');
+ $('calendarView').classList.remove('hidden');
+ renderCalendar();
+ window.scrollTo({top:0,behavior:'smooth'})
+};
 $('saveTrade').onclick=()=>{
  const date=$('tradeDate').value,pnl=+$('pnl').value;if(!date||!Number.isFinite(pnl)){alert('Enter a date and profit/loss amount.');return}
  journal.push({id:Date.now(),date,instrument:$('journalInstrument').value||'XAUUSD',result:$('resultType').value,pnl,score:+$('journalScore').value||0,notes:$('journalNotes').value,honored:$('honoredLock').checked});

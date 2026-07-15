@@ -1,21 +1,17 @@
-CALCUFAITH V4.3 — MONTHLY PERFORMANCE
+CALCUFAITH V4.4 — DAILY JOURNAL PAGES
 
-Calendar page now focuses on monthly trading performance.
+NEW
+- Stronger green calendar tiles for profitable days
+- Stronger red calendar tiles for losing days
+- Tap any calendar date to open a dedicated Daily Journal page
+- Back button returns to the monthly calendar
+- Daily page shows Daily Net, number of trades, and daily win rate
+- Add, review, and delete trades from the selected date
+- Monthly report card and all existing tools remain
 
-NEW MONTHLY DASHBOARD
-- Month Ending P&L
-- Win Rate
-- Winning Trades
-- Losing Trades
-- Green Days
-- Red Days
-- Best Day
-- Worst Day
-- Average Win
-- Average Loss
-- Monthly Report Card grade and summary
-
-The brokerage account balance tracker was not included. Account balance remains on the Trade Calculator page for lot-size calculations.
+LAPTOP
+Calcufaith works from the same GitHub Pages link on a laptop.
+In Chrome or Microsoft Edge, open the link and select Install App from the address bar or browser menu.
 
 UPDATE
-Upload and replace the same five files in your existing GitHub repository, then commit.
+Upload and replace the same five files in the existing GitHub repository, then commit.
