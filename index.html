@@ -81,13 +81,19 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 .calhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
 .calhead button{border:0;background:var(--card2);color:var(--text);width:40px;height:40px;border-radius:12px;font-size:20px}
 .monthtitle{font-weight:950;font-size:18px;text-align:center}
-.monthstats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}
-.monthstats .stat strong{font-size:16px}
+.monthstats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.monthstats .stat strong{font-size:17px}
+.report-card{margin-top:12px;background:#080d18;border:1px solid rgba(244,196,48,.25);border-radius:16px;padding:14px}
+.report-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.report-grade{font-size:34px;font-weight:950;color:var(--gold)}
+.report-summary{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.5}
 .weekdays,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .weekdays div{text-align:center;color:var(--muted);font-size:10px;font-weight:800;padding:4px}
-.day{min-height:70px;background:var(--card2);border:1px solid transparent;border-radius:11px;padding:7px;position:relative}
+.day{min-height:72px;background:var(--card2);border:1px solid transparent;border-radius:11px;padding:7px;position:relative;overflow:hidden;display:flex;flex-direction:column}
 .day.other{opacity:.35}.day.today{border-color:var(--gold)}.day.selected{outline:2px solid var(--gold)}
-.daynum{font-size:11px;font-weight:900}.daypnl{font-size:11px;font-weight:900;margin-top:14px;word-break:break-word}
+.day.win{background:rgba(52,211,153,.10)}.day.loss{background:rgba(251,113,133,.10)}
+.daynum{font-size:11px;font-weight:900}
+.daypnl{font-size:11px;font-weight:950;margin-top:auto;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .daycount{position:absolute;bottom:5px;right:6px;color:var(--muted);font-size:9px}
 .trade-list{display:flex;flex-direction:column;gap:8px;margin-top:11px}
 .trade-row{display:grid;grid-template-columns:1fr auto;gap:10px;background:var(--card2);border-radius:12px;padding:11px}
@@ -184,10 +190,23 @@ details{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid var(--
 <div class="card">
 <div class="calhead"><button id="prevMonth">‹</button><div class="monthtitle" id="monthTitle"></div><button id="nextMonth">›</button></div>
 <div class="monthstats">
-<div class="stat"><strong id="monthNet">$0.00</strong><span>Monthly Net</span></div>
+<div class="stat"><strong id="monthEnding">$0.00</strong><span>Month Ending P&L</span></div>
 <div class="stat"><strong id="monthWinRate">0%</strong><span>Win Rate</span></div>
+<div class="stat"><strong id="winningTrades">0</strong><span>Winning Trades</span></div>
+<div class="stat"><strong id="losingTrades">0</strong><span>Losing Trades</span></div>
 <div class="stat"><strong id="greenDays">0</strong><span>Green Days</span></div>
 <div class="stat"><strong id="redDays">0</strong><span>Red Days</span></div>
+<div class="stat"><strong id="bestDay">$0.00</strong><span>Best Day</span></div>
+<div class="stat"><strong id="worstDay">$0.00</strong><span>Worst Day</span></div>
+<div class="stat"><strong id="averageWin">$0.00</strong><span>Average Win</span></div>
+<div class="stat"><strong id="averageLoss">$0.00</strong><span>Average Loss</span></div>
+</div>
+<div class="report-card">
+<div class="report-head">
+<div><strong>Monthly Report Card</strong><br><span class="hint">Based on saved trades and stewardship scores</span></div>
+<div class="report-grade" id="reportGrade">—</div>
+</div>
+<div class="report-summary" id="reportSummary">Save trades this month to generate your report.</div>
 </div>
 <div class="weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
 <div class="calendar" id="calendar"></div>
@@ -302,10 +321,56 @@ function renderCalendar(){
  const year=viewMonth.getFullYear(),month=viewMonth.getMonth();$('monthTitle').textContent=viewMonth.toLocaleDateString('en-US',{month:'long',year:'numeric'});
  const first=new Date(year,month,1),start=new Date(year,month,1-first.getDay());const cal=$('calendar');cal.innerHTML='';
  const monthTrades=journal.filter(t=>{const d=new Date(t.date+'T12:00:00');return d.getFullYear()===year&&d.getMonth()===month});
- const net=monthTrades.reduce((a,t)=>a+(+t.pnl||0),0),wins=monthTrades.filter(t=>(+t.pnl||0)>0).length,losses=monthTrades.filter(t=>(+t.pnl||0)<0).length;
+ const net=monthTrades.reduce((a,t)=>a+(+t.pnl||0),0);
+ const winning=monthTrades.filter(t=>(+t.pnl||0)>0);
+ const losing=monthTrades.filter(t=>(+t.pnl||0)<0);
+ const wins=winning.length,losses=losing.length;
  const daily={};monthTrades.forEach(t=>{daily[t.date]=(daily[t.date]||0)+(+t.pnl||0)});
- $('monthNet').textContent=money(net);$('monthNet').className=net>=0?'good':'bad';$('monthWinRate').textContent=(wins+losses)?Math.round(wins/(wins+losses)*100)+'%':'0%';$('greenDays').textContent=Object.values(daily).filter(v=>v>0).length;$('redDays').textContent=Object.values(daily).filter(v=>v<0).length;
- for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=localDate(d),items=journal.filter(t=>t.date===key),pnl=items.reduce((a,t)=>a+(+t.pnl||0),0);const cell=document.createElement('div');cell.className='day'+(d.getMonth()!==month?' other':'')+(key===localDate(new Date())?' today':'')+(key===$('tradeDate').value?' selected':'');cell.innerHTML=`<div class="daynum">${d.getDate()}</div>${items.length?`<div class="daypnl ${pnl>=0?'good':'bad'}">${pnl>=0?'+':''}${money(pnl)}</div><div class="daycount">${items.length} trade${items.length>1?'s':''}</div>`:''}`;cell.onclick=()=>{$('tradeDate').value=key;renderCalendar();renderTrades()};cal.appendChild(cell)}
+ const dailyValues=Object.values(daily);
+ const best=dailyValues.length?Math.max(...dailyValues):0;
+ const worst=dailyValues.length?Math.min(...dailyValues):0;
+ const avgWin=wins?winning.reduce((a,t)=>a+(+t.pnl||0),0)/wins:0;
+ const avgLoss=losses?losing.reduce((a,t)=>a+(+t.pnl||0),0)/losses:0;
+ const winRate=(wins+losses)?Math.round(wins/(wins+losses)*100):0;
+ const avgScore=monthTrades.length?Math.round(monthTrades.reduce((a,t)=>a+(+t.score||0),0)/monthTrades.length):0;
+
+ $('monthEnding').textContent=(net>=0?'+':'')+money(net);
+ $('monthEnding').className=net>=0?'good':'bad';
+ $('monthWinRate').textContent=winRate+'%';
+ $('winningTrades').textContent=wins;
+ $('losingTrades').textContent=losses;
+ $('greenDays').textContent=dailyValues.filter(v=>v>0).length;
+ $('redDays').textContent=dailyValues.filter(v=>v<0).length;
+ $('bestDay').textContent=(best>0?'+':'')+money(best);
+ $('bestDay').className=best>=0?'good':'bad';
+ $('worstDay').textContent=money(worst);
+ $('worstDay').className=worst<0?'bad':'good';
+ $('averageWin').textContent=(avgWin>0?'+':'')+money(avgWin);
+ $('averageWin').className=avgWin>=0?'good':'bad';
+ $('averageLoss').textContent=money(avgLoss);
+ $('averageLoss').className=avgLoss<0?'bad':'good';
+
+ let grade='—';
+ if(monthTrades.length){
+   if(net>0&&winRate>=80&&avgScore>=90)grade='A+';
+   else if(net>0&&winRate>=70&&avgScore>=80)grade='A';
+   else if(net>0&&winRate>=60)grade='B';
+   else if(net>=0)grade='C';
+   else grade='D';
+ }
+ $('reportGrade').textContent=grade;
+
+ let summary='Save trades this month to generate your report.';
+ if(monthTrades.length){
+   const parts=[];
+   parts.push(`You finished the month ${net>=0?'profitable':'at a loss'} with ${wins} winning trade${wins===1?'':'s'} and ${losses} losing trade${losses===1?'':'s'}.`);
+   parts.push(`Your win rate was ${winRate}% and your average Stewardship Score was ${avgScore}%.`);
+   if(best>0)parts.push(`Your best trading day produced ${money(best)}.`);
+   if(worst<0)parts.push(`Your worst trading day was ${money(worst)}.`);
+   summary=parts.join(' ');
+ }
+ $('reportSummary').textContent=summary;
+ for(let i=0;i<42;i++){const d=new Date(start);d.setDate(start.getDate()+i);const key=localDate(d),items=journal.filter(t=>t.date===key),pnl=items.reduce((a,t)=>a+(+t.pnl||0),0);const cell=document.createElement('div');let dayClass='day'+(d.getMonth()!==month?' other':'')+(key===localDate(new Date())?' today':'')+(key===$('tradeDate').value?' selected':'');if(items.length)dayClass+=pnl>=0?' win':' loss';cell.className=dayClass;const shortPnl=`${pnl>=0?'+':'-'}$${Math.abs(pnl).toLocaleString('en-US',{maximumFractionDigits:0})}`;cell.innerHTML=`<div class="daynum">${d.getDate()}</div>${items.length?`<div class="daypnl ${pnl>=0?'good':'bad'}">${shortPnl}</div><div class="daycount">${items.length}T</div>`:''}`;cell.onclick=()=>{$('tradeDate').value=key;renderCalendar();renderTrades()};cal.appendChild(cell)}
 }
 $('prevMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()-1);renderCalendar()};$('nextMonth').onclick=()=>{viewMonth.setMonth(viewMonth.getMonth()+1);renderCalendar()};
 

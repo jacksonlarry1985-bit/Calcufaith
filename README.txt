@@ -1,21 +1,21 @@
-CALCUFAITH V4 — P&L CALENDAR + DISCIPLINE LOCK
+CALCUFAITH V4.3 — MONTHLY PERFORMANCE
 
-NEW FEATURES
-- TradeZella-style monthly profit and loss calendar
-- Daily net P&L displayed directly on each calendar date
-- Tap a date to add or review trades
-- Monthly net, win rate, green days, and red days
-- Manual trade journal with instrument, result, P&L, notes, Stewardship Score, and Discipline Lock status
-- Discipline Lock saves the original trade plan
-- Records why and when the plan was changed
-- Keeps calculator, Stewardship Checklist, AI Coach, and kill-zone tools
+Calendar page now focuses on monthly trading performance.
 
-DATA STORAGE
-Data is saved locally in the browser on this iPhone. Clearing Safari website data or changing devices may remove it.
+NEW MONTHLY DASHBOARD
+- Month Ending P&L
+- Win Rate
+- Winning Trades
+- Losing Trades
+- Green Days
+- Red Days
+- Best Day
+- Worst Day
+- Average Win
+- Average Loss
+- Monthly Report Card grade and summary
 
-UPDATE GITHUB
-1. Unzip this package.
-2. Upload all five files to the existing Calcufaith repository.
-3. Replace the old files and commit.
-4. Wait for GitHub Pages to redeploy.
-5. Refresh Calcufaith. If the Home Screen app remains cached, remove and re-add it.
+The brokerage account balance tracker was not included. Account balance remains on the Trade Calculator page for lot-size calculations.
+
+UPDATE
+Upload and replace the same five files in your existing GitHub repository, then commit.
